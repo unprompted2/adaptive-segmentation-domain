@@ -12,4 +12,18 @@ lambda_w: 1
 # data
 src:
   data: /home/jorisro/research/data/EM/EPFL/raw
-  l
+  labels: /home/jorisro/research/data/EM/EPFL/labels
+  train_val_test_split: 0.50,0.75
+  split_orientation: z
+tar:
+  data: /home/jorisro/research/data/EM/VNC/raw
+  labels: /home/jorisro/research/data/EM/VNC/labels
+  train_val_test_split: 0.50,0.75
+  split_orientation: z
+type: pngseq
+tar_labels_available: 0.10
+# network
+input_size: 256,256
+in_channels: 1
+fm: 16
+le
