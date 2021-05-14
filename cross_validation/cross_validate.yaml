@@ -1,0 +1,15 @@
+# ===========
+# CONFIG FILE
+# ===========
+#
+# method
+method: mmd  # no-da, mmd, dat, ynet, wnet or unet-ts
+lambda_mmd: 1
+lambda_dat: 1
+lambda_rec: 1
+lambda_o: 1
+lambda_w: 1
+# data
+src:
+  data: /home/jorisro/research/data/EM/EPFL/raw
+  l
