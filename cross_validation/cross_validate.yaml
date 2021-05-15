@@ -48,4 +48,7 @@ log_freq: 50
 log_refresh_rate: 0
 # reproducibility
 seed: 0
-# grid s
+# grid search cross validation: search grid of the form param1:v1;v2;v3#param2:w1;w2#...
+search_grid: lambda_mmd:0.1;10
+folds: 3
+results_file: results.pickle
