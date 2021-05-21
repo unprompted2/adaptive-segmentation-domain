@@ -23,4 +23,19 @@ class UNetMMD2D(UNetDA2D):
                          norm=norm, activation=activation, dropout_enc=dropout_enc, dropout_dec=dropout_dec,
                          loss_fn=loss_fn, lr=lr, return_features=True)
 
-        self.lambda_mmd = lamb
+        self.lambda_mmd = lambda_mmd
+
+    def training_step(self, batch, batch_idx):
+
+        # get data
+        x, y = batch
+        x_src, x_tar = x
+        y_src, y_tar = y
+        tar_labels_available = y_tar.size(1) > 0
+
+        # forward prop
+        y_src_pred, f_src = self(x_src)
+        y_tar_pred, f_tar = self(x_tar)
+
+        # compute loss
+        loss_
