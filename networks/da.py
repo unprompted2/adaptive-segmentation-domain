@@ -38,4 +38,10 @@ class UNetMMD2D(UNetDA2D):
         y_tar_pred, f_tar = self(x_tar)
 
         # compute loss
-        loss_
+        loss_src = self.loss_fn(y_src_pred, y_src[:, 0, ...])
+        loss_tar = self.loss_fn(y_tar_pred, y_tar[:, 0, ...]) if tar_labels_available else 0
+        loss_mmd = feature_regularization_loss(f_src, f_tar, method='mmd')
+        loss = loss_src + loss_tar + self.lambda_mmd * loss_mmd
+
+        # compute iou
+        y_src_pred = torch.softmax(y_src_pred, dim=1
