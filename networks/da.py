@@ -96,4 +96,12 @@ class UNetMMD2D(UNetDA2D):
 
         # log images
         if batch_idx == self.val_batch_id:
-            s
+            self._log_predictions(x_src, y_src, y_src_pred, prefix='val_src')
+            self._log_predictions(x_tar, y_tar if tar_labels_available else None, y_tar_pred, prefix='val_tar')
+
+        return loss
+
+
+class UNetMMD2DClassifier(UNetDA2DClassifier):
+
+    def __init__(self, dataset, epochs=10, gpus=(0,), accelerator='dp', log_dir='lo
