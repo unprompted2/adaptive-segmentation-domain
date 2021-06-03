@@ -124,4 +124,9 @@ class UNetMMD2DClassifier(UNetDA2DClassifier):
 
     def fit(self, X, y):
 
-        X, y =
+        X, y = data_from_range(X, self.dataset)
+
+        # initialize model and trainer
+        self.model = UNetMMD2D(in_channels=self.in_channels, feature_maps=self.feature_maps, levels=self.levels,
+                               dropout_enc=self.dropout, dropout_dec=self.dropout, norm=self.norm,
+                               activation=self.activation, coi=self.coi, loss_fn=self.lo
