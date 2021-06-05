@@ -129,4 +129,8 @@ class UNetMMD2DClassifier(UNetDA2DClassifier):
         # initialize model and trainer
         self.model = UNetMMD2D(in_channels=self.in_channels, feature_maps=self.feature_maps, levels=self.levels,
                                dropout_enc=self.dropout, dropout_dec=self.dropout, norm=self.norm,
-                               activation=self.activation, coi=self.coi, loss_fn=self.lo
+                               activation=self.activation, coi=self.coi, loss_fn=self.loss_fn,
+                               lambda_mmd=self.lambda_mmd)
+        self.trainer = pl.Trainer(max_epochs=int(self.epochs), gpus=self.gpus, accelerator=self.accelerator,
+                                  default_root_dir=self.log_dir, flush_logs_every_n_steps=self.log_freq,
+                                  log_every_n_steps=self.log_freq, callbacks
