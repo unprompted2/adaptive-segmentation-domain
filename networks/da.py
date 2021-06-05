@@ -133,4 +133,10 @@ class UNetMMD2DClassifier(UNetDA2DClassifier):
                                lambda_mmd=self.lambda_mmd)
         self.trainer = pl.Trainer(max_epochs=int(self.epochs), gpus=self.gpus, accelerator=self.accelerator,
                                   default_root_dir=self.log_dir, flush_logs_every_n_steps=self.log_freq,
-                                  log_every_n_steps=self.log_freq, callbacks
+                                  log_every_n_steps=self.log_freq, callbacks=self.callbacks,
+                                  progress_bar_refresh_rate=self.log_refresh_rate)
+
+        # construct dataloader
+        train = LabeledVolumeDataset(X, y, input_shape=(1, *self.input_shape), in_channels=self.in_channels,
+                                     batch_size=self.train_batch_size, transform=self.transform,
+             
