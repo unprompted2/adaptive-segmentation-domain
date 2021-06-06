@@ -139,4 +139,15 @@ class UNetMMD2DClassifier(UNetDA2DClassifier):
         # construct dataloader
         train = LabeledVolumeDataset(X, y, input_shape=(1, *self.input_shape), in_channels=self.in_channels,
                                      batch_size=self.train_batch_size, transform=self.transform,
-             
+                                     partial_labels=self.partial_labels, len_epoch=self.len_epoch)
+        loader = DataLoader(train, batch_size=self.train_batch_size, num_workers=self.num_workers, pin_memory=True)
+
+        # train the network
+        self.trainer.fit(self.model, loader)
+
+        return self
+
+
+class UNetDAT2D(UNetDA2D):
+
+    def __init__(self, input_
