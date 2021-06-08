@@ -150,4 +150,8 @@ class UNetMMD2DClassifier(UNetDA2DClassifier):
 
 class UNetDAT2D(UNetDA2D):
 
-    def __init__(self, input_
+    def __init__(self, input_shape=(1, 256, 256), in_channels=1, coi=(0, 1), feature_maps=64, levels=4,
+                 skip_connections=True, residual_connections=False, norm='instance', activation='relu', dropout_enc=0.0,
+                 dropout_dec=0.0, loss_fn='ce', lr=1e-3, lambda_dat=0, conv_channels=(16, 16, 16, 16, 16),
+                 fc_channels=(128, 32)):
+        super().__init_
