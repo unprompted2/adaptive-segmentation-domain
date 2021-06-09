@@ -154,4 +154,7 @@ class UNetDAT2D(UNetDA2D):
                  skip_connections=True, residual_connections=False, norm='instance', activation='relu', dropout_enc=0.0,
                  dropout_dec=0.0, loss_fn='ce', lr=1e-3, lambda_dat=0, conv_channels=(16, 16, 16, 16, 16),
                  fc_channels=(128, 32)):
-        super().__init_
+        super().__init__(input_shape=input_shape, in_channels=in_channels, coi=coi, feature_maps=feature_maps,
+                         levels=levels, skip_connections=skip_connections, residual_connections=residual_connections,
+                         norm=norm, activation=activation, dropout_enc=dropout_enc, dropout_dec=dropout_dec,
+                         loss_fn=loss_fn, lr=lr,
