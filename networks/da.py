@@ -157,4 +157,15 @@ class UNetDAT2D(UNetDA2D):
         super().__init__(input_shape=input_shape, in_channels=in_channels, coi=coi, feature_maps=feature_maps,
                          levels=levels, skip_connections=skip_connections, residual_connections=residual_connections,
                          norm=norm, activation=activation, dropout_enc=dropout_enc, dropout_dec=dropout_dec,
-                         loss_fn=loss_fn, lr=lr,
+                         loss_fn=loss_fn, lr=lr, return_features=True)
+
+        self.lambda_dat = lambda_dat
+        self.conv_channels = conv_channels
+        self.fc_channels = fc_channels
+
+        self.loss_ce = CrossEntropyLoss()
+
+        # domain classifier
+        self.domain_classifier = CNN2D(conv_channels, fc_channels, (feature_maps, *self.input_shape))
+
+    def forward(sel
