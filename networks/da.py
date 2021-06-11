@@ -168,4 +168,19 @@ class UNetDAT2D(UNetDA2D):
         # domain classifier
         self.domain_classifier = CNN2D(conv_channels, fc_channels, (feature_maps, *self.input_shape))
 
-    def forward(sel
+    def forward(self, x):
+
+        # contractive path
+        y_pred, f = super().forward(x)
+
+        # gradient reversal on the final feature layer
+        f_rev = ReverseLayerF.apply(f)
+        dom_pred = self.domain_classifier(f_rev)
+
+        return y_pred, dom_pred
+
+    def training_step(self, batch, batch_idx):
+
+        # get data
+        x, y = batch
+ 
