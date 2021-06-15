@@ -206,4 +206,13 @@ class UNetDAT2D(UNetDA2D):
         mIoU_src = self._mIoU(y_src_pred, y_src)
         mIoU_tar = self._mIoU(y_tar_pred, y_tar) if tar_labels_available else -1
         self.log('train/mIoU_src', mIoU_src, prog_bar=True)
-        self.log('train/lo
+        self.log('train/loss_src', loss_src)
+        self.log('train/loss_dat', loss_dat, prog_bar=True)
+        self.log('train/loss', loss)
+        u = y_tar.unique()
+        if u.numel() != 1 or int(u) != 255:
+            self.log('train/mIoU_tar', mIoU_tar, prog_bar=True)
+            self.log('train/loss_tar', loss_tar)
+
+        # log images
+        if batch_idx == self.t
