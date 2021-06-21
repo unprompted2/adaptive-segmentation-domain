@@ -215,4 +215,15 @@ class UNetDAT2D(UNetDA2D):
             self.log('train/loss_tar', loss_tar)
 
         # log images
-        if batch_idx == self.t
+        if batch_idx == self.train_batch_id:
+            self._log_predictions(x_src, y_src, y_src_pred, prefix='train_src')
+            self._log_predictions(x_tar, y_tar if tar_labels_available else None, y_tar_pred, prefix='train_tar')
+
+        return loss
+
+    def validation_step(self, batch, batch_idx):
+
+        # get data
+        x, y = batch
+        x_src, x_tar = x
+        y_src
