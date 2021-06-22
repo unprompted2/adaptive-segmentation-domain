@@ -234,4 +234,13 @@ class UNetDAT2D(UNetDA2D):
         # forward prop
         y_src_pred, dom_src_pred = self(x_src)
         y_tar_pred, dom_tar_pred = self(x_tar)
-        dom_pred = torch.cat((dom_src_pred, dom_tar
+        dom_pred = torch.cat((dom_src_pred, dom_tar_pred), dim=0)
+
+        # compute loss
+        loss_src = self.loss_fn(y_src_pred, y_src[:, 0, ...])
+        loss_tar = self.loss_fn(y_tar_pred, y_tar[:, 0, ...]) if tar_labels_available else 0
+        loss_dat = self.loss_ce(dom_pred, dom_labels)
+        loss = loss_src + loss_tar + self.lambda_dat * loss_dat
+
+        # compute iou
+        y_src_pred = torch.softma
