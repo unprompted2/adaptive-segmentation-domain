@@ -250,4 +250,11 @@ class UNetDAT2D(UNetDA2D):
         self.log('val/mIoU_src', mIoU_src)
         self.log('val/mIoU_tar', mIoU_tar, prog_bar=True)
         self.log('val/loss_src', loss_src)
-     
+        self.log('val/loss_tar', loss_tar)
+        self.log('val/loss_dat', loss_dat, prog_bar=True)
+        self.log('val/loss', loss)
+
+        # log images
+        if batch_idx == self.val_batch_id:
+            self._log_predictions(x_src, y_src, y_src_pred, prefix='val_src')
+            self._log_predictions(x_tar, y_tar if tar_labels_av
