@@ -257,4 +257,13 @@ class UNetDAT2D(UNetDA2D):
         # log images
         if batch_idx == self.val_batch_id:
             self._log_predictions(x_src, y_src, y_src_pred, prefix='val_src')
-            self._log_predictions(x_tar, y_tar if tar_labels_av
+            self._log_predictions(x_tar, y_tar if tar_labels_available else None, y_tar_pred, prefix='val_tar')
+
+        return loss
+
+
+class UNetDAT2DClassifier(UNetDA2DClassifier):
+
+    def __init__(self, dataset, epochs=10, gpus=(0,), accelerator='dp', log_dir='logs', log_freq=50,
+                 log_refresh_rate=None, train_batch_size=1, test_batch_size=1, num_workers=1, device=0,
+                 or
