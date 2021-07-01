@@ -291,4 +291,10 @@ class UNetDAT2DClassifier(UNetDA2DClassifier):
                                dropout_enc=self.dropout, dropout_dec=self.dropout, norm=self.norm,
                                activation=self.activation, coi=self.coi, loss_fn=self.loss_fn,
                                lambda_dat=self.lambda_dat, input_shape=self.input_shape)
-        self.trainer = pl.Trainer(max_epochs=int(self.epochs), gpus=self.gpus, accelerato
+        self.trainer = pl.Trainer(max_epochs=int(self.epochs), gpus=self.gpus, accelerator=self.accelerator,
+                                  default_root_dir=self.log_dir, flush_logs_every_n_steps=self.log_freq,
+                                  log_every_n_steps=self.log_freq, callbacks=self.callbacks,
+                                  progress_bar_refresh_rate=self.log_refresh_rate)
+
+        # construct dataloader
+        train = LabeledVolumeDataset(X, y, i
