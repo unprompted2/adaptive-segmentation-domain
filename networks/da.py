@@ -324,4 +324,15 @@ class YNet2D(UNetDA2D):
 
         # reconstruction decoder
         self.decoder_rec = UNetDecoder2D(in_channels, feature_maps=self.feature_maps, levels=self.levels,
-                                         skip_con
+                                         skip_connections=False, norm=self.norm, dropout=self.dropout_dec,
+                                         activation=self.activation)
+
+    def forward(self, x):
+
+        # contractive path
+        encoder_outputs, encoded = self.encoder(x)
+
+        # expansive segmentation path
+        _, y_pred = self.decoder(encoded, encoder_outputs)
+
+        # 
