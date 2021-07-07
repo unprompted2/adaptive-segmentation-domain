@@ -335,4 +335,19 @@ class YNet2D(UNetDA2D):
         # expansive segmentation path
         _, y_pred = self.decoder(encoded, encoder_outputs)
 
-        # 
+        # expansive reconstruction path
+        _, x_rec = self.decoder_rec(encoded, None)
+
+        return y_pred, x_rec
+
+    def training_step(self, batch, batch_idx):
+
+        # get data
+        x, y = batch
+        x_src, x_tar = x
+        y_src, y_tar = y
+        tar_labels_available = y_tar.size(1) > 0
+
+        # forward prop
+        y_src_pred, x_src_rec = self(x_src)
+  
