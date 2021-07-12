@@ -350,4 +350,10 @@ class YNet2D(UNetDA2D):
 
         # forward prop
         y_src_pred, x_src_rec = self(x_src)
-  
+        y_tar_pred, x_tar_l_rec = self(x_tar)
+
+        # compute loss
+        loss_src = self.loss_fn(y_src_pred, y_src[:, 0, ...])
+        loss_tar = self.loss_fn(y_tar_pred, y_tar[:, 0, ...]) if tar_labels_available else 0
+        loss_rec = self.loss_rec(x_src_rec, x_src) + self.loss_rec(x_tar_l_rec, x_tar)
+        loss = loss_src + loss_tar + self.lamb
