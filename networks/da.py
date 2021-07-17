@@ -401,4 +401,10 @@ class YNet2D(UNetDA2D):
         y_src_pred = torch.softmax(y_src_pred, dim=1)
         y_tar_pred = torch.softmax(y_tar_pred, dim=1)
         mIoU_src = self._mIoU(y_src_pred, y_src)
-        mIoU_t
+        mIoU_tar = self._mIoU(y_tar_pred, y_tar) if tar_labels_available else -1
+        self.log('val/mIoU_src', mIoU_src)
+        self.log('val/mIoU_tar', mIoU_tar, prog_bar=True)
+        self.log('val/loss_src', loss_src)
+        self.log('val/loss_tar', loss_tar)
+        self.log('val/loss_rec', loss_rec, prog_bar=True)
+        
