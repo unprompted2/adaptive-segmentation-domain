@@ -417,4 +417,9 @@ class YNet2D(UNetDA2D):
         return loss
 
 
-class YNet2DClassifier(UNetDA2DC
+class YNet2DClassifier(UNetDA2DClassifier):
+
+    def __init__(self, dataset, epochs=10, gpus=(0,), accelerator='dp', log_dir='logs', log_freq=50,
+                 log_refresh_rate=None, train_batch_size=1, test_batch_size=1, num_workers=1, device=0,
+                 orientations=(0,), normalization='unit', transform=None, input_shape=(1, 256, 256), in_channels=1,
+  
