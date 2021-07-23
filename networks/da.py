@@ -442,4 +442,7 @@ class YNet2DClassifier(UNetDA2DClassifier):
         X, y = data_from_range(X, self.dataset)
 
         # initialize model and trainer
-        self.model = YNet2D(in_channels=self.in_channels, feature_maps=
+        self.model = YNet2D(in_channels=self.in_channels, feature_maps=self.feature_maps, levels=self.levels,
+                            dropout_enc=self.dropout, dropout_dec=self.dropout, norm=self.norm,
+                            activation=self.activation, coi=self.coi, loss_fn=self.loss_fn, lambda_rec=self.lambda_rec)
+        self.trainer = pl.Trainer(max_epochs=int(self.epochs), gpus=self.gpus, accelerator=self.accel
