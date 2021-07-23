@@ -431,4 +431,15 @@ class YNet2DClassifier(UNetDA2DClassifier):
                          orientations=orientations, normalization=normalization, transform=transform,
                          input_shape=input_shape, in_channels=in_channels, coi=coi, feature_maps=feature_maps,
                          levels=levels, skip_connections=skip_connections, residual_connections=residual_connections,
-                         norm=norm, activation=activation, dropout=dropout, loss_fn=loss_fn, lr=l
+                         norm=norm, activation=activation, dropout=dropout, loss_fn=loss_fn, lr=lr,
+                         partial_labels=partial_labels, len_epoch=len_epoch)
+
+        # parameters
+        self.lambda_rec = lambda_rec
+
+    def fit(self, X, y):
+
+        X, y = data_from_range(X, self.dataset)
+
+        # initialize model and trainer
+        self.model = YNet2D(in_channels=self.in_channels, feature_maps=
