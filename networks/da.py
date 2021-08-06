@@ -476,4 +476,13 @@ class WNet2D(UNetDA2D):
         self.lambda_rec = lambda_rec
         self.lambda_dat = lambda_dat
         self.conv_channels = conv_channels
-        self.fc_chann
+        self.fc_channels = fc_channels
+
+        self.loss_ce = CrossEntropyLoss()
+        self.loss_rec = L2Loss()
+
+        # domain classifier
+        self.domain_classifier = CNN2D(conv_channels, fc_channels, (feature_maps, *self.input_shape))
+
+        # reconstruction network
+        self.net_rec = UNet2D(input_shape=input_shape, in_channels=in_channel
