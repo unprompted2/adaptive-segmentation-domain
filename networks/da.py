@@ -485,4 +485,11 @@ class WNet2D(UNetDA2D):
         self.domain_classifier = CNN2D(conv_channels, fc_channels, (feature_maps, *self.input_shape))
 
         # reconstruction network
-        self.net_rec = UNet2D(input_shape=input_shape, in_channels=in_channel
+        self.net_rec = UNet2D(input_shape=input_shape, in_channels=in_channels, coi=(1,), feature_maps=feature_maps,
+                              levels=levels, skip_connections=False, norm=norm, activation=activation,
+                              dropout_enc=dropout_enc, dropout_dec=dropout_dec, loss_fn='l2', lr=lr,
+                              return_features=True)
+
+    def forward(self, x):
+
+        # reco
