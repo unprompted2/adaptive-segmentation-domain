@@ -492,4 +492,16 @@ class WNet2D(UNetDA2D):
 
     def forward(self, x):
 
-        # reco
+        # reconstruction
+        x_rec, f = self.net_rec(x)
+
+        # gradient reversal on the final feature layer
+        f_rev = ReverseLayerF.apply(f)
+        dom_pred = self.domain_classifier(f_rev)
+
+        # segmentation
+        y_pred, _ = super().forward(x_rec)
+
+        return y_pred, x_rec, dom_pred
+
+    def training_step(self, batch, batch
