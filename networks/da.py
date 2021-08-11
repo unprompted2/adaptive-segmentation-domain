@@ -504,4 +504,15 @@ class WNet2D(UNetDA2D):
 
         return y_pred, x_rec, dom_pred
 
-    def training_step(self, batch, batch
+    def training_step(self, batch, batch_idx):
+
+        # get data
+        x, y = batch
+        x_src, x_tar = x
+        y_src, y_tar = y
+        tar_labels_available = y_tar.size(1) > 0
+        dom_labels = torch.zeros((x_src.size(0) + x_tar.size(0))).long().to(x_src.device)
+        dom_labels[x_src.size(0):] = 1
+
+        # forward prop
+        y_src_pred, x_src_rec, d
