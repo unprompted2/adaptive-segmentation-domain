@@ -528,4 +528,10 @@ class WNet2D(UNetDA2D):
 
         # compute iou
         y_src_pred = torch.softmax(y_src_pred, dim=1)
-        y_tar_pred = torch.softma
+        y_tar_pred = torch.softmax(y_tar_pred, dim=1)
+        mIoU_src = self._mIoU(y_src_pred, y_src)
+        mIoU_tar = self._mIoU(y_tar_pred, y_tar) if tar_labels_available else -1
+        self.log('train/mIoU_src', mIoU_src, prog_bar=True)
+        self.log('train/loss_src', loss_src)
+        self.log('train/loss_rec', loss_rec, prog_bar=True)
+        self.log('train/loss_dat
