@@ -534,4 +534,13 @@ class WNet2D(UNetDA2D):
         self.log('train/mIoU_src', mIoU_src, prog_bar=True)
         self.log('train/loss_src', loss_src)
         self.log('train/loss_rec', loss_rec, prog_bar=True)
-        self.log('train/loss_dat
+        self.log('train/loss_dat', loss_dat, prog_bar=True)
+        self.log('train/loss', loss)
+        u = y_tar.unique()
+        if u.numel() != 1 or int(u) != 255:
+            self.log('train/mIoU_tar', mIoU_tar, prog_bar=True)
+            self.log('train/loss_tar', loss_tar)
+
+        # log images
+        if batch_idx == self.train_batch_id:
+            self._log_predic
