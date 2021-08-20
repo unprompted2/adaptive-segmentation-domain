@@ -564,4 +564,8 @@ class WNet2D(UNetDA2D):
         dom_pred = torch.cat((dom_src_pred, dom_tar_pred), dim=0)
 
         # compute loss
-        loss_src
+        loss_src = self.loss_fn(y_src_pred, y_src[:, 0, ...])
+        loss_tar = self.loss_fn(y_tar_pred, y_tar[:, 0, ...]) if tar_labels_available else 0
+        loss_rec = self.loss_rec(x_src_rec, x_src) + self.loss_rec(x_tar_rec, x_tar)
+        loss_dat = self.loss_ce(dom_pred, dom_labels)
+        loss = loss_src + loss_tar + self.lambda_rec * loss_rec + s
