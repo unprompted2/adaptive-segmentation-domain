@@ -555,4 +555,13 @@ class WNet2D(UNetDA2D):
         x_src, x_tar = x
         y_src, y_tar = y
         tar_labels_available = y_tar.size(1) > 0
-        dom
+        dom_labels = torch.zeros((x_src.size(0) + x_tar.size(0))).long().to(x_src.device)
+        dom_labels[x_src.size(0):] = 1
+
+        # forward prop
+        y_src_pred, x_src_rec, dom_src_pred = self(x_src)
+        y_tar_pred, x_tar_rec, dom_tar_pred = self(x_tar)
+        dom_pred = torch.cat((dom_src_pred, dom_tar_pred), dim=0)
+
+        # compute loss
+        loss_src
