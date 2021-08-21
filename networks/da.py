@@ -576,4 +576,12 @@ class WNet2D(UNetDA2D):
         mIoU_src = self._mIoU(y_src_pred, y_src)
         mIoU_tar = self._mIoU(y_tar_pred, y_tar) if tar_labels_available else -1
         self.log('val/mIoU_src', mIoU_src)
-        self.l
+        self.log('val/loss_src', loss_src)
+        self.log('val/mIoU_tar', mIoU_tar, prog_bar=True)
+        self.log('val/loss_tar', loss_tar)
+        self.log('val/loss_rec', loss_rec, prog_bar=True)
+        self.log('val/loss_dat', loss_dat, prog_bar=True)
+        self.log('val/loss', loss)
+
+        # log images
+        if batch_idx == self.val_batch_id
