@@ -593,4 +593,8 @@ class WNet2D(UNetDA2D):
 
 class WNet2DClassifier(UNetDA2DClassifier):
 
-    def __init__(self, dataset, epochs=10, gpus=(0,), accelerator='dp', log_dir='logs',
+    def __init__(self, dataset, epochs=10, gpus=(0,), accelerator='dp', log_dir='logs', log_freq=50,
+                 log_refresh_rate=None, train_batch_size=1, test_batch_size=1, num_workers=1, device=0,
+                 orientations=(0,), normalization='unit', transform=None, input_shape=(1, 256, 256), in_channels=1,
+                 coi=(0, 1), feature_maps=64, levels=4, skip_connections=True, residual_connections=False,
+         
