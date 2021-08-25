@@ -597,4 +597,7 @@ class WNet2DClassifier(UNetDA2DClassifier):
                  log_refresh_rate=None, train_batch_size=1, test_batch_size=1, num_workers=1, device=0,
                  orientations=(0,), normalization='unit', transform=None, input_shape=(1, 256, 256), in_channels=1,
                  coi=(0, 1), feature_maps=64, levels=4, skip_connections=True, residual_connections=False,
-         
+                 norm='instance', activation='relu', dropout=0.0, loss_fn=CrossEntropyLoss(), lr=1e-3,
+                 partial_labels=1, len_epoch=1000, lambda_rec=0, lambda_dat=0):
+        super().__init__(dataset, epochs=epochs, gpus=gpus, accelerator=accelerator, log_dir=log_dir, log_freq=log_freq,
+                         log_refresh_rate=log_refresh_rat
