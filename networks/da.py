@@ -603,4 +603,10 @@ class WNet2DClassifier(UNetDA2DClassifier):
                          log_refresh_rate=log_refresh_rate, train_batch_size=train_batch_size,
                          test_batch_size=test_batch_size, num_workers=num_workers, device=device,
                          orientations=orientations, normalization=normalization, transform=transform,
-                         input_shape=input_shape, in_channels=in_channels, coi=coi, featur
+                         input_shape=input_shape, in_channels=in_channels, coi=coi, feature_maps=feature_maps,
+                         levels=levels, skip_connections=skip_connections, residual_connections=residual_connections,
+                         norm=norm, activation=activation, dropout=dropout, loss_fn=loss_fn, lr=lr,
+                         partial_labels=partial_labels, len_epoch=len_epoch)
+
+        # parameters
+       
