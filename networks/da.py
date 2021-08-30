@@ -609,4 +609,13 @@ class WNet2DClassifier(UNetDA2DClassifier):
                          partial_labels=partial_labels, len_epoch=len_epoch)
 
         # parameters
-       
+        self.lambda_rec = lambda_rec
+        self.lambda_dat = lambda_dat
+
+    def fit(self, X, y):
+
+        X, y = data_from_range(X, self.dataset)
+
+        # initialize model and trainer
+        self.model = WNet2D(in_channels=self.in_channels, feature_maps=self.feature_maps, levels=self.levels,
+                            dropout_enc=self.
