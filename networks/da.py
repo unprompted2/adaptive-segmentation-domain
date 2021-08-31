@@ -618,4 +618,7 @@ class WNet2DClassifier(UNetDA2DClassifier):
 
         # initialize model and trainer
         self.model = WNet2D(in_channels=self.in_channels, feature_maps=self.feature_maps, levels=self.levels,
-                            dropout_enc=self.
+                            dropout_enc=self.dropout, dropout_dec=self.dropout, norm=self.norm,
+                            activation=self.activation, coi=self.coi, loss_fn=self.loss_fn, lambda_rec=self.lambda_rec,
+                            lambda_dat=self.lambda_dat, input_shape=self.input_shape)
+        self.trainer = pl.Trainer(max_epochs=int(self.epochs), gpus=self.gpus, accelerator=self.accelerato
