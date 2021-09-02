@@ -632,4 +632,13 @@ class WNet2DClassifier(UNetDA2DClassifier):
                                      partial_labels=self.partial_labels, len_epoch=self.len_epoch)
         loader = DataLoader(train, batch_size=self.train_batch_size, num_workers=self.num_workers, pin_memory=True)
 
-   
+        # train the network
+        self.trainer.fit(self.model, loader)
+
+        return self
+
+
+class UNetTS2D(UNetDA2D):
+
+    def __init__(self, input_shape=(1, 256, 256), in_channels=1, coi=(0, 1), feature_maps=64, levels=4,
+                 skip_connections=True, residual_connections=False, norm='instance', activation='relu', dropout_enc
