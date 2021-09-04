@@ -645,4 +645,13 @@ class UNetTS2D(UNetDA2D):
                  dropout_dec=0.0, loss_fn='ce', lr=1e-3, lambda_w=0, lambda_o=0, n_samples_coral=4096):
         super().__init__(input_shape=input_shape, in_channels=in_channels, coi=coi, feature_maps=feature_maps,
                          levels=levels, skip_connections=skip_connections, residual_connections=residual_connections,
-        
+                         norm=norm, activation=activation, dropout_enc=dropout_enc, dropout_dec=dropout_dec,
+                         loss_fn=loss_fn, lr=lr)
+
+        self.lambda_w = lambda_w
+        self.lambda_o = lambda_o
+
+        self.n_samples_coral = n_samples_coral
+
+        # reconstruction decoder
+        self.encoder_src = UNetEncoder2D(self.in_channels, feature_maps=self
