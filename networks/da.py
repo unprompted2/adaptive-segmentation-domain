@@ -654,4 +654,10 @@ class UNetTS2D(UNetDA2D):
         self.n_samples_coral = n_samples_coral
 
         # reconstruction decoder
-        self.encoder_src = UNetEncoder2D(self.in_channels, feature_maps=self
+        self.encoder_src = UNetEncoder2D(self.in_channels, feature_maps=self.feature_maps, levels=self.levels,
+                                         norm=self.norm, dropout=self.dropout_enc, activation=self.activation)
+
+        # parameter transfer parameters
+        for i, weight in enumerate(self.encoder_src.parameters()):
+            a = nn.Parameter(torch.ones(weight.shape))
+        
