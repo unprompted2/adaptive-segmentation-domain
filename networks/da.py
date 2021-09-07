@@ -660,4 +660,14 @@ class UNetTS2D(UNetDA2D):
         # parameter transfer parameters
         for i, weight in enumerate(self.encoder_src.parameters()):
             a = nn.Parameter(torch.ones(weight.shape))
-        
+            b = nn.Parameter(torch.zeros(weight.shape))
+            self.register_parameter('a' + str(i), a)
+            self.register_parameter('b' + str(i), b)
+
+    def forward(self, x, target=True):
+
+        # contractive path
+        if target:
+            encoder_outputs, encoded = self.encoder(x)
+        else:
+            encoder_out
