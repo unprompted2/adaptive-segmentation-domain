@@ -670,4 +670,18 @@ class UNetTS2D(UNetDA2D):
         if target:
             encoder_outputs, encoded = self.encoder(x)
         else:
-            encoder_out
+            encoder_outputs, encoded = self.encoder_src(x)
+
+        # expansive path
+        decoder_outputs, y_pred = self.decoder(encoded, encoder_outputs)
+        f = decoder_outputs[-1]
+
+        return y_pred, f
+
+    def training_step(self, batch, batch_idx):
+
+        # get data
+        x, y = batch
+        x_src, x_tar = x
+        y_src, y_tar = y
+        tar_labels_available
