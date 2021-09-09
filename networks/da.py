@@ -684,4 +684,13 @@ class UNetTS2D(UNetDA2D):
         x, y = batch
         x_src, x_tar = x
         y_src, y_tar = y
-        tar_labels_available
+        tar_labels_available = y_tar.size(1) > 0
+
+        # forward prop
+        y_src_pred, f_src = self(x_src, target=False)
+        y_tar_pred, f_tar = self(x_tar, target=True)
+
+        # compute loss
+        loss_src = self.loss_fn(y_src_pred, y_src[:, 0, ...])
+        loss_tar = self.loss_fn(y_tar_pred, y_tar[:, 0, ...]) if tar_labels_available else 0
+        loss_o = feature_regularization_loss(
