@@ -693,4 +693,11 @@ class UNetTS2D(UNetDA2D):
         # compute loss
         loss_src = self.loss_fn(y_src_pred, y_src[:, 0, ...])
         loss_tar = self.loss_fn(y_tar_pred, y_tar[:, 0, ...]) if tar_labels_available else 0
-        loss_o = feature_regularization_loss(
+        loss_o = feature_regularization_loss(f_src, f_tar, method='coral', n_samples=self.n_samples_coral)
+        loss_w = self._param_regularization_loss()
+        loss = loss_src + loss_tar + self.lambda_o * loss_o + self.lambda_w * loss_w
+
+        # compute iou
+        y_src_pred = torch.softmax(y_src_pred, dim=1)
+        y_tar_pred = torch.softmax(y_tar_pred, dim=1)
+        mIoU_src
