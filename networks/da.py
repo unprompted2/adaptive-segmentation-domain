@@ -706,4 +706,12 @@ class UNetTS2D(UNetDA2D):
         self.log('train/loss_src', loss_src)
         self.log('train/loss_o', loss_o, prog_bar=True)
         self.log('train/loss_w', loss_w, prog_bar=True)
-        
+        self.log('train/loss', loss)
+        u = y_tar.unique()
+        if u.numel() != 1 or int(u) != 255:
+            self.log('train/mIoU_tar', mIoU_tar, prog_bar=True)
+            self.log('train/loss_tar', loss_tar)
+
+        # log images
+        if batch_idx == self.train_batch_id:
+            self._log_predictions(x_src, y_src, y_sr
