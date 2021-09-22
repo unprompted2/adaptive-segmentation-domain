@@ -754,4 +754,17 @@ class UNetTS2D(UNetDA2D):
         # log images
         if batch_idx == self.train_batch_id:
             self._log_predictions(x_src, y_src, y_src_pred, prefix='val_src')
-            self._log_predictions(x_tar, y_tar if tar_labels_available else None, y_tar
+            self._log_predictions(x_tar, y_tar if tar_labels_available else None, y_tar_pred, prefix='val_tar')
+
+        return loss
+
+    def _param_regularization_loss(self):
+        """
+        Computes the regularization loss on the parameters of the two streams
+        :return: parameter regularization loss
+        """
+
+        src_params = self.encoder_src.parameters()
+        tar_params = self.encoder.parameters()
+
+      
