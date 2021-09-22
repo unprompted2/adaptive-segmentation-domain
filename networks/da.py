@@ -767,4 +767,12 @@ class UNetTS2D(UNetDA2D):
         src_params = self.encoder_src.parameters()
         tar_params = self.encoder.parameters()
 
+        cum_sum = 0
+        w_loss = 0
+        for i, (src_weight, tar_weight) in enumerate(zip(src_params, tar_params)):
+            a = getattr(self, 'a' + str(i))
+            b = getattr(self, 'b' + str(i))
+            d = a.mul(src_weight) + b - tar_weight
+            w_loss = w_loss + torch.pow(d, 2).sum()
+            cum_sum += np.prod(np.array(d.shape))
       
