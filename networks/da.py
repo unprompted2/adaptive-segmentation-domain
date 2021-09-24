@@ -775,4 +775,13 @@ class UNetTS2D(UNetDA2D):
             d = a.mul(src_weight) + b - tar_weight
             w_loss = w_loss + torch.pow(d, 2).sum()
             cum_sum += np.prod(np.array(d.shape))
-      
+        w_loss = w_loss / cum_sum
+
+        return w_loss
+
+
+class UNetTS2DClassifier(UNetDA2DClassifier):
+
+    def __init__(self, dataset, epochs=10, gpus=(0,), accelerator='dp', log_dir='logs', log_freq=50,
+                 log_refresh_rate=None, train_batch_size=1, test_batch_size=1, num_workers=1, device=0,
+                 orientations=(0,), normalization='u
