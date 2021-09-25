@@ -787,4 +787,8 @@ class UNetTS2DClassifier(UNetDA2DClassifier):
                  orientations=(0,), normalization='unit', transform=None, input_shape=(1, 256, 256), in_channels=1,
                  coi=(0, 1), feature_maps=64, levels=4, skip_connections=True, residual_connections=False,
                  norm='instance', activation='relu', dropout=0.0, loss_fn=CrossEntropyLoss(), lr=1e-3,
-                 partial_labels=1, len_epoch=1000, lambda_w=0, lambda_o=0,
+                 partial_labels=1, len_epoch=1000, lambda_w=0, lambda_o=0, n_samples_coral=4096):
+        super().__init__(dataset, epochs=epochs, gpus=gpus, accelerator=accelerator, log_dir=log_dir, log_freq=log_freq,
+                         log_refresh_rate=log_refresh_rate, train_batch_size=train_batch_size,
+                         test_batch_size=test_batch_size, num_workers=num_workers, device=device,
+                         or
