@@ -806,4 +806,8 @@ class UNetTS2DClassifier(UNetDA2DClassifier):
 
         X, y = data_from_range(X, self.dataset)
 
-        # initialize m
+        # initialize model and trainer
+        self.model = UNetTS2D(in_channels=self.in_channels, feature_maps=self.feature_maps, levels=self.levels,
+                              dropout_enc=self.dropout, dropout_dec=self.dropout, norm=self.norm,
+                              activation=self.activation, coi=self.coi, loss_fn=self.loss_fn, lambda_w=self.lambda_w,
+                         
