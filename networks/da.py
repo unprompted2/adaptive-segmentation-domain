@@ -794,4 +794,16 @@ class UNetTS2DClassifier(UNetDA2DClassifier):
                          orientations=orientations, normalization=normalization, transform=transform,
                          input_shape=input_shape, in_channels=in_channels, coi=coi, feature_maps=feature_maps,
                          levels=levels, skip_connections=skip_connections, residual_connections=residual_connections,
-                         norm=no
+                         norm=norm, activation=activation, dropout=dropout, loss_fn=loss_fn, lr=lr,
+                         partial_labels=partial_labels, len_epoch=len_epoch)
+
+        # parameters
+        self.lambda_w = lambda_w
+        self.lambda_o = lambda_o
+        self.n_samples_coral = n_samples_coral
+
+    def fit(self, X, y):
+
+        X, y = data_from_range(X, self.dataset)
+
+        # initialize m
