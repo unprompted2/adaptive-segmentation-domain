@@ -13,4 +13,9 @@ def generate_model(name, params):
                        activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params['lr'])
     elif name == 'mmd':
         net = UNetMMD2D(in_channels=params['in_channels'], feature_maps=params['fm'], levels=params['levels'],
-                        dropout_enc=params['dropout'], dropout_dec=params['dropout'], nor
+                        dropout_enc=params['dropout'], dropout_dec=params['dropout'], norm=params['norm'],
+                        activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params['lr'],
+                        lambda_mmd=params['lambda_mmd'])
+    elif name == 'dat':
+        net = UNetDAT2D(in_channels=params['in_channels'], feature_maps=params['fm'], levels=params['levels'],
+                        dropout_enc=params['drop
