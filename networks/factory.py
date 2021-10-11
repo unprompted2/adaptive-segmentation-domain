@@ -18,4 +18,8 @@ def generate_model(name, params):
                         lambda_mmd=params['lambda_mmd'])
     elif name == 'dat':
         net = UNetDAT2D(in_channels=params['in_channels'], feature_maps=params['fm'], levels=params['levels'],
-                        dropout_enc=params['drop
+                        dropout_enc=params['dropout'], dropout_dec=params['dropout'], norm=params['norm'],
+                        activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params['lr'],
+                        lambda_dat=params['lambda_dat'], input_shape=params['input_size'])
+    elif name == 'ynet':
+        net = YNet2D(in_channels=params['in_channels'], f
