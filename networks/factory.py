@@ -29,4 +29,9 @@ def generate_model(name, params):
     elif name == 'wnet':
         net = WNet2D(in_channels=params['in_channels'], feature_maps=params['fm'], levels=params['levels'],
                      dropout_enc=params['dropout'], dropout_dec=params['dropout'], norm=params['norm'],
-                     activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params[
+                     activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params['lr'],
+                     lambda_rec=params['lambda_rec'], lambda_dat=params['lambda_dat'],
+                     input_shape=params['input_size'])
+    elif name == 'unet-ts':
+        net = UNetTS2D(in_channels=params['in_channels'], feature_maps=params['fm'], levels=params['levels'],
+                       dropout_enc=params['dropout'], dropout_dec
