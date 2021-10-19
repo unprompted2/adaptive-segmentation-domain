@@ -38,4 +38,9 @@ def generate_model(name, params):
                        activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params['lr'],
                        lambda_w=params['lambda_w'], lambda_o=params['lambda_o'])
     else:
-        net = UNetDA2D(in_channels=params['in_channels'], feature_maps=params['fm'], l
+        net = UNetDA2D(in_channels=params['in_channels'], feature_maps=params['fm'], levels=params['levels'],
+                       dropout_enc=params['dropout'], dropout_dec=params['dropout'], norm=params['norm'],
+                       activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params['lr'])
+
+    print_frm('Employed network: %s' % str(net.__class__.__name__))
+    prin
