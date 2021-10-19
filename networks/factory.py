@@ -34,4 +34,8 @@ def generate_model(name, params):
                      input_shape=params['input_size'])
     elif name == 'unet-ts':
         net = UNetTS2D(in_channels=params['in_channels'], feature_maps=params['fm'], levels=params['levels'],
-                       dropout_enc=params['dropout'], dropout_dec
+                       dropout_enc=params['dropout'], dropout_dec=params['dropout'], norm=params['norm'],
+                       activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params['lr'],
+                       lambda_w=params['lambda_w'], lambda_o=params['lambda_o'])
+    else:
+        net = UNetDA2D(in_channels=params['in_channels'], feature_maps=params['fm'], l
