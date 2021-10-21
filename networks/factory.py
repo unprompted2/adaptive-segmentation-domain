@@ -43,4 +43,9 @@ def generate_model(name, params):
                        activation=params['activation'], coi=params['coi'], loss_fn=params['loss'], lr=params['lr'])
 
     print_frm('Employed network: %s' % str(net.__class__.__name__))
-    prin
+    print_frm('    - Input channels: %d' % params['in_channels'])
+    print_frm('    - Initial feature maps: %d' % params['fm'])
+    print_frm('    - Levels: %d' % params['levels'])
+    print_frm('    - Dropout: %.2f' % params['dropout'])
+    print_frm('    - Normalization: %s' % params['norm'])
+    print_frm('    - Activation: %s' % params['activation'])
