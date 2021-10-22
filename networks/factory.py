@@ -49,3 +49,14 @@ def generate_model(name, params):
     print_frm('    - Dropout: %.2f' % params['dropout'])
     print_frm('    - Normalization: %s' % params['norm'])
     print_frm('    - Activation: %s' % params['activation'])
+    print_frm('    - Classes of interest: %s' % str(params['coi']))
+    print_frm('    - Initial learning rate: %f' % params['lr'])
+
+    return net
+
+
+def generate_classifier(name, params, dataset, transform):
+
+    if name == 'no-da':
+        return UNetNoDA2DClassifier(dataset, epochs=params['epochs'], gpus=params['gpus'],
+                 
