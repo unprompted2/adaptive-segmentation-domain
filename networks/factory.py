@@ -65,4 +65,9 @@ def generate_classifier(name, params, dataset, transform):
                                     test_batch_size=params['test_batch_size'], num_workers=params['num_workers'],
                                     device=params['gpus'][0], transform=transform, feature_maps=params['fm'],
                                     levels=params['levels'], dropout=params['dropout'], norm=params['norm'],
-                                    activation=params['activation'
+                                    activation=params['activation'], coi=params['coi'], loss_fn=params['loss'],
+                                    partial_labels=(1, params['tar_labels_available']),
+                                    input_shape=params['input_size'], len_epoch=params['len_epoch'])
+    elif name == 'mmd':
+        return UNetMMD2DClassifier(dataset, epochs=params['epochs'], gpus=params['gpus'],
+                         
