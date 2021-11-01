@@ -77,3 +77,8 @@ def generate_classifier(name, params, dataset, transform):
                                    device=params['gpus'][0], transform=transform, feature_maps=params['fm'],
                                    levels=params['levels'], dropout=params['dropout'], norm=params['norm'],
                                    activation=params['activation'], coi=params['coi'], loss_fn=params['loss'],
+                                   partial_labels=(1, params['tar_labels_available']), lambda_mmd=params['lambda_mmd'],
+                                   input_shape=params['input_size'], len_epoch=params['len_epoch'])
+    elif name == 'dat':
+        return UNetDAT2DClassifier(dataset, epochs=params['epochs'], gpus=params['gpus'],
+                                  
