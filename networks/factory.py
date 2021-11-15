@@ -95,4 +95,7 @@ def generate_classifier(name, params, dataset, transform):
                                 accelerator=params['accelerator'], log_dir=params['log_dir'],
                                 log_freq=params['log_freq'], log_refresh_rate=params['log_refresh_rate'],
                                 train_batch_size=params['train_batch_size'], test_batch_size=params['test_batch_size'],
-                                num_workers
+                                num_workers=params['num_workers'], device=params['gpus'][0], transform=transform,
+                                feature_maps=params['fm'], levels=params['levels'], dropout=params['dropout'],
+                                norm=params['norm'], activation=params['activation'], coi=params['coi'],
+                                loss_fn=
