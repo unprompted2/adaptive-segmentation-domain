@@ -113,4 +113,7 @@ def generate_classifier(name, params, dataset, transform):
                                 lambda_rec=params['lambda_rec'], lambda_dat=params['lambda_dat'],
                                 input_shape=params['input_size'], len_epoch=params['len_epoch'])
     elif name == 'unet-ts':
-        r
+        return UNetTS2DClassifier(dataset, epochs=params['epochs'], gpus=params['gpus'],
+                                  accelerator=params['accelerator'], log_dir=params['log_dir'],
+                                  log_freq=params['log_freq'], log_refresh_rate=params['log_refresh_rate'],
+                                  train_batch_size=params['train_batch_size'],
