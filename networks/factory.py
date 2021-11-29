@@ -123,4 +123,9 @@ def generate_classifier(name, params, dataset, transform):
                                   activation=params['activation'], coi=params['coi'], loss_fn=params['loss'],
                                   partial_labels=(1, params['tar_labels_available']), lambda_w=params['lambda_w'],
                                   lambda_o=params['lambda_o'], input_shape=params['input_size'],
-                                  len_epoch=params['len_epoc
+                                  len_epoch=params['len_epoch'])
+    else:
+        return UNetNoDA2DClassifier(dataset, epochs=params['epochs'], gpus=params['gpus'],
+                                    accelerator=params['accelerator'], log_dir=params['log_dir'],
+                                    log_freq=params['log_freq'], log_refresh_rate=params['log_refresh_rate'],
+                                    train_batch_size
