@@ -26,4 +26,10 @@ class UNetNoDA2D(UNetDA2D):
         loss_tar = self.loss_fn(y_tar_pred, y_tar[:, 0, ...]) if tar_labels_available else 0
         loss = loss_src + loss_tar
 
-  
+        # compute iou
+        y_src_pred = torch.softmax(y_src_pred, dim=1)
+        y_tar_pred = torch.softmax(y_tar_pred, dim=1)
+        mIoU_src = self._mIoU(y_src_pred, y_src)
+        mIoU_tar = self._mIoU(y_tar_pred, y_tar) if tar_labels_available else -1
+        self.log('train/mIoU_src', mIoU_src, prog_bar=True)
+        self.log('train/l
