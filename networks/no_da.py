@@ -106,4 +106,4 @@ class UNetNoDA2DClassifier(UNetDA2DClassifier):
         # train the network
         self.trainer.fit(self.model, loader)
 
-    
+        return self
