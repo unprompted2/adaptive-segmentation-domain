@@ -27,4 +27,9 @@ if __name__ == '__main__':
     """
     print_frm('Parsing arguments')
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", "-c", help="Path to the network configuration file", type=st
+    parser.add_argument("--config", "-c", help="Path to the network configuration file", type=str,
+                        default='../train_supervised.yaml')
+    parser.add_argument("--model", "-m", help="Path to the network parameters", type=str, required=True)
+    parser.add_argument("--dataset", "-d", help="Path to the dataset that needs to be segmented", type=str,
+                        required=True)
+    parser.add_argume
