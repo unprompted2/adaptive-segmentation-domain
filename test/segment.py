@@ -32,4 +32,7 @@ if __name__ == '__main__':
     parser.add_argument("--model", "-m", help="Path to the network parameters", type=str, required=True)
     parser.add_argument("--dataset", "-d", help="Path to the dataset that needs to be segmented", type=str,
                         required=True)
-    parser.add_argume
+    parser.add_argument("--block_wise", "-bw", help="Flag that specifies to compute block wise or not",
+                        action='store_true', default=False)
+    parser.add_argument("--output", "-o", help="Path to store the output segmentation", type=str, required=True)
+    parser.add_argument("--gpu", "-g", help="GPU device for computations", type=int, defaul
