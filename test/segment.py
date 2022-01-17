@@ -35,4 +35,18 @@ if __name__ == '__main__':
     parser.add_argument("--block_wise", "-bw", help="Flag that specifies to compute block wise or not",
                         action='store_true', default=False)
     parser.add_argument("--output", "-o", help="Path to store the output segmentation", type=str, required=True)
-    parser.add_argument("--gpu", "-g", help="GPU device for computations", type=int, defaul
+    parser.add_argument("--gpu", "-g", help="GPU device for computations", type=int, default=0)
+    args = parser.parse_args()
+    with open(args.config) as file:
+        params = parse_params(yaml.load(file, Loader=yaml.FullLoader))
+
+    """
+    Fix seed (for reproducibility)
+    """
+    set_seed(params['seed'])
+
+    """
+        Build the network
+    """
+    print_frm('Building the network')
+    net = generate_model(params['met
