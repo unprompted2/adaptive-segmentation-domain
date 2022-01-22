@@ -67,4 +67,9 @@ if __name__ == '__main__':
     t_start = time.perf_counter()
     if args.block_wise:
         segment_read(args.dataset, net.get_unet(load_best=False), params['input_size'], write_dir=args.output,
-                     write_probs=True, in_channels=params[
+                     write_probs=True, in_channels=params['in_channels'], batch_size=params['test_batch_size'],
+                     track_progress=True, device=args.gpu)
+    else:
+        segment_ram(x, net.get_unet(load_best=False), params['input_size'], write_dir=args.output, write_probs=True,
+                    in_channels=params['in_channels'], batch_size=params['test_batch_size'], track_progress=True,
+                    device
