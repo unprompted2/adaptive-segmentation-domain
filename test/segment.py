@@ -72,4 +72,6 @@ if __name__ == '__main__':
     else:
         segment_ram(x, net.get_unet(load_best=False), params['input_size'], write_dir=args.output, write_probs=True,
                     in_channels=params['in_channels'], batch_size=params['test_batch_size'], track_progress=True,
-                    device
+                    device=args.gpu)
+    t_stop = time.perf_counter()
+    print_frm('Elapsed segmentation time: %d hours, %d minutes, %.2f seconds' % process_seconds(t_stop - t_start))

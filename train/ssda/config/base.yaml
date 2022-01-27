@@ -1,0 +1,7 @@
+# ===========
+# CONFIG FILE
+# ===========
+#
+# method
+method: <METHOD>  # no-da, mmd, dat, ynet, wnet or unet-ts
+lambda_mmd: <LAMBDA_MM
