@@ -4,4 +4,16 @@
 #
 # method
 method: <METHOD>  # no-da, mmd, dat, ynet, wnet or unet-ts
-lambda_mmd: <LAMBDA_MM
+lambda_mmd: <LAMBDA_MMD>
+lambda_dat: <LAMBDA_DAT>
+lambda_rec: <LAMBDA_REC>
+lambda_o: <LAMBDA_O>
+lambda_w: <LAMBDA_W>
+# data
+src:
+  data: /home/jorisro/research/data/EM/<DOMAIN>/raw
+  labels: /home/jorisro/research/data/EM/<DOMAIN>/labels
+  train_val_test_split: <TRAIN_VAL_TEST_SPLIT>
+  split_orientation: <SPLIT_ORIENTATION>
+tar:
+  data: /home/jorisro/research/data/EM/VNC/raw
