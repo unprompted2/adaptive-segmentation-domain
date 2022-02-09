@@ -1,0 +1,8 @@
+# ===========
+# CONFIG FILE
+# ===========
+#
+# method
+method: u-net  # u-net
+# data
+data: /home/jorisro/research/data/EM/VNC/
