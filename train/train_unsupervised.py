@@ -115,3 +115,5 @@ if __name__ == '__main__':
     if args.clean_up:
         print_frm('Cleaning up')
         os.system('rm -r ' + os.path.join(trainer.log_dir, 'checkpoints'))
+        mkdir(os.path.join(trainer.log_dir, 'pretraining'))
+        os.system('mv ' + trainer.log_dir + '/events.out.tfevents.* ' + os.path.join(trainer.log_dir, 'pretraining'))
