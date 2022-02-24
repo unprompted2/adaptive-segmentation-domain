@@ -5,4 +5,12 @@ echo "Updating neuralnets..."
 cd ../neuralnets
 git pull
 
-# pull most recent domain-adaptive-
+# pull most recent domain-adaptive-segmentation version
+echo "Updating domain-adaptive-segmentation..."
+cd ../domain-adaptive-segmentation
+git pull
+
+
+echo "Done"
+
+
