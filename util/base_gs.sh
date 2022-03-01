@@ -21,4 +21,6 @@ VALUES=<VALUES>
 COI=1
 
 # run experiments (first build the script, then run it)
-CONFIG_FILE=$
+CONFIG_FILE=${METHOD}-<N_PARAM>-${DOMAIN_SRC}2${DOMAIN_TAR}
+python $PROJECT_DIR/util/build_config_gs.py -b $PROJECT_DIR/train/gs/config/base.yaml -ds ${DOMAIN_SRC} -dt ${DOMAIN_TAR} -m $METHOD -al $AVAILABLE_LABELS -c $COI -g 0 -p $PARAMS -v $VALUES
+python $PROJECT_DIR/train/train_semi_supervised.py -c $PROJECT_DIR/train/gs/config/${CONFIG_FILE}.yaml --clean-up &> $PROJECT_D
