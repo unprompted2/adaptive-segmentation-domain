@@ -8,4 +8,17 @@ PYTHON_EXE=$PYTHON_DEFAULT
 
 # define environment variables
 PROJECT_DIR=$HOME/research/domain-adaptive-segmentation
-export PYTHONPATH=$PY
+export PYTHONPATH=$PYTHONPATH:$HOME/research/lib/python:$HOME/research/neuralnets:$PROJECT_DIR
+
+# DOMAINS=("EPFL" "UroCell" "po936q" "MitoEM-H" "MitoEM-R" "MiRA" "Kasthuri" "VNC" "EMBL" "evhela")
+DOMAIN_SRC="MiRA"
+DOMAIN_TAR="Kasthuri"
+
+METHOD=<METHOD>
+AVAILABLE_LABELS=0.20
+PARAMS=<PARAMS>
+VALUES=<VALUES>
+COI=1
+
+# run experiments (first build the script, then run it)
+CONFIG_FILE=$
