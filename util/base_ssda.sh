@@ -28,4 +28,12 @@ COI=<COI>
 N=${#DOMAINS_SRC[@]}
 M=${#DOMAINS_TAR[@]}
 
-# r
+# run experiments (first build the script, then run it)
+for (( i=0; i<$N; i++ ))
+do
+    for (( j=0; j<$M; j++ ))
+    do
+        if [[ ${DOMAINS_SRC[$i]} != ${DOMAINS_TAR[$j]} ]]
+        then
+            CONFIG_FILE=${METHOD}-${AVAILABLE_LABELS}-${DOMAINS_SRC[$i]}2${DOMAINS_TAR[$j]}
+	          $PYTHON_EXE $PROJECT_DIR/util/build_config_da.py -b $PROJECT_DIR/trai
