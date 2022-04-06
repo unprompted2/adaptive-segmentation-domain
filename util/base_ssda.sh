@@ -36,4 +36,6 @@ do
         if [[ ${DOMAINS_SRC[$i]} != ${DOMAINS_TAR[$j]} ]]
         then
             CONFIG_FILE=${METHOD}-${AVAILABLE_LABELS}-${DOMAINS_SRC[$i]}2${DOMAINS_TAR[$j]}
-	          $PYTHON_EXE $PROJECT_DIR/util/build_config_da.py -b $PROJECT_DIR/trai
+	          $PYTHON_EXE $PROJECT_DIR/util/build_config_da.py -b $PROJECT_DIR/train/semi-supervised-da/config/base.yaml -ds ${DOMAINS_SRC[$i]} -dt ${DOMAINS_TAR[$j]} -m $METHOD -al $AVAILABLE_LABELS -c $COI -g 0
+	          $PYTHON_EXE $PROJECT_DIR/train/train_semi_supervised.py -c $PROJECT_DIR/train/semi-supervised-da/config/${CONFIG_FILE}.yaml --clean-up &> $PROJECT_DIR/train/semi-supervised-da/logs/${CONFIG_FILE}.logs
+        
