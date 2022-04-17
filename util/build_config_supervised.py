@@ -43,3 +43,16 @@ def _default_params():
         params['input_size'][DOM] = '448,448'
     for DOM in [UROCELL, EMBL_HELA]:
         params['input_size'][DOM] = '256,256'
+    params['input_size'][VNC] = '192,192'
+
+    # classes of interest parameters
+    for DOM in [EPFL, UROCELL, MITOEM_H, MITOEM_R, MIRA, KASTHURI, VNC, PO936Q]:
+        params['coi'][DOM] = '0,1'
+    params['coi'][EMBL_HELA] = '0,2'
+    params['coi'][VIB_EVHELA] = '0,1,2,3'
+
+    return params
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--bas
