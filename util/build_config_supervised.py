@@ -61,4 +61,13 @@ parser.add_argument("--gpu", "-g", help="Index of the GPU computing device", typ
 args = parser.parse_args()
 
 # get default parameters
-params = _default
+params = _default_params()
+
+# read and adjust template
+with open(args.base_file, 'r') as f:
+    data = yaml.load(f, Loader=SafeLoader)
+    for k in data.keys():
+        if type(data[k]) == str:
+            data[k] = data[k].replace('<DOMAIN>', args.domain)
+            data[k] = data[k].replace('<TRAIN_VAL_TEST_SPLIT>', params['train_val_test_split'][args.domain])
+            data[k] = data[k].repla
