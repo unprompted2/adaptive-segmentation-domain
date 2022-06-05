@@ -70,4 +70,11 @@ with open(args.base_file, 'r') as f:
         if type(data[k]) == str:
             data[k] = data[k].replace('<DOMAIN>', args.domain)
             data[k] = data[k].replace('<TRAIN_VAL_TEST_SPLIT>', params['train_val_test_split'][args.domain])
-            data[k] = data[k].repla
+            data[k] = data[k].replace('<SPLIT_ORIENTATION>', params['split_orientation'][args.domain])
+            data[k] = data[k].replace('<INPUT_SIZE>', params['input_size'][args.domain])
+            data[k] = data[k].replace('<COI>', params['coi'][args.domain])
+            if data[k] == '<GPU>':
+                data[k] = args.gpu
+
+# write config file
+with open(os.path
