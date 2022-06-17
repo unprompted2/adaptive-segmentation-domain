@@ -77,4 +77,5 @@ with open(args.base_file, 'r') as f:
                 data[k] = args.gpu
 
 # write config file
-with open(os.path
+with open(os.path.join(os.path.dirname(args.base_file), args.domain + '.yaml'), 'w') as f:
+    documents = yaml.dump(data, f)
