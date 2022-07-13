@@ -26,4 +26,12 @@ YNET = 'ynet'
 UNET_TS = 'unet-ts'
 METHODS = [NO_DA, MMD, DAT, YNET, UNET_TS]
 
-# available labe
+# available labels
+AVAILABLE_LABELS = [0.05, 0.10, 0.20, 0.50, 1.00]
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--base_file", "-b", help="Path to the base script", required=True, type=str)
+parser.add_argument("--target_dir", "-t", help="Path to the directory where the scripts will be saved", required=True,
+                    type=str)
+parser.add
