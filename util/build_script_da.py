@@ -45,3 +45,10 @@ with open(args.base_file, 'r') as f:
         for i, al in enumerate(AVAILABLE_LABELS):
             for src_domain in DOMAINS:
                 for tar_domain in DOMAINS:
+                    if src_domain != tar_domain:
+
+                        lines_ = []
+                        for line in lines:
+                            line = line.replace('<METHOD>', method)
+                            line = line.replace('<COI>', str(args.coi))
+                            line = line.re
