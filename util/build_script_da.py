@@ -56,4 +56,6 @@ with open(args.base_file, 'r') as f:
                             line = line.replace('<TAR_DOMAINS>', '"' + tar_domain + '"')
                             lines_.append(line)
 
-                        with open(os.path.join(args.target_dir, 'run_%s_%d
+                        with open(os.path.join(args.target_dir, 'run_%s_%d_%s2%s.sh' % (method, i, src_domain, tar_domain)), 'w') as f:
+                            for line in lines_:
+                                f.write(line)
