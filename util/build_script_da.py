@@ -51,4 +51,9 @@ with open(args.base_file, 'r') as f:
                         for line in lines:
                             line = line.replace('<METHOD>', method)
                             line = line.replace('<COI>', str(args.coi))
-                            line = line.re
+                            line = line.replace('<AVAILABLE_LABELS>', str(al))
+                            line = line.replace('<SRC_DOMAINS>', '"' + src_domain + '"')
+                            line = line.replace('<TAR_DOMAINS>', '"' + tar_domain + '"')
+                            lines_.append(line)
+
+                        with open(os.path.join(args.target_dir, 'run_%s_%d
