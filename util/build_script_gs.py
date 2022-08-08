@@ -25,4 +25,13 @@ NO_DA = 'no-da'
 MMD = 'mmd'
 DAT = 'dat'
 YNET = 'ynet'
-UNET_TS = 'unet
+UNET_TS = 'unet-ts'
+METHODS = [MMD, DAT, YNET, UNET_TS]
+PARAMS = {MMD: {'lambda_mmd': (3, 9, 1)}, DAT: {'lambda_dat': (-3, 3, 1)},
+          YNET: {'lambda_rec': (-1, 5, 1)}, UNET_TS: {'lambda_o': (0, 9, 2), 'lambda_w': (-2, 7, 2)}}
+
+# available labels
+al = 0.20
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--base_file", "-b", help="Path to the base scrip
