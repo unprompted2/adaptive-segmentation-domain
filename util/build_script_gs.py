@@ -34,4 +34,11 @@ PARAMS = {MMD: {'lambda_mmd': (3, 9, 1)}, DAT: {'lambda_dat': (-3, 3, 1)},
 al = 0.20
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--base_file", "-b", help="Path to the base scrip
+parser.add_argument("--base_file", "-b", help="Path to the base script", required=True, type=str)
+parser.add_argument("--coi", "-c", help="Class of interest", type=int, default=1)
+parser.add_argument("--target_dir", "-t", help="Path to the directory where the scripts will be saved", required=True,
+                    type=str)
+args = parser.parse_args()
+
+# load the base script
+mk
