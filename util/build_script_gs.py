@@ -41,4 +41,14 @@ parser.add_argument("--target_dir", "-t", help="Path to the directory where the 
 args = parser.parse_args()
 
 # load the base script
-mk
+mkdir(args.target_dir)
+with open(args.base_file, 'r') as f:
+    lines = f.readlines()
+    for method in METHODS:
+        params = PARAMS[method]
+        values = params.values()
+        params = params.keys()
+        prms = np.meshgrid(*[10**(np.arange(*v).astype(float)) for v in values])
+        for n in range(prms[0].size):
+            param_values = [str(p.item(n)) for p in prms]
+    
