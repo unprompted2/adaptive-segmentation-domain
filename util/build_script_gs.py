@@ -51,4 +51,10 @@ with open(args.base_file, 'r') as f:
         prms = np.meshgrid(*[10**(np.arange(*v).astype(float)) for v in values])
         for n in range(prms[0].size):
             param_values = [str(p.item(n)) for p in prms]
-    
+            lines_ = []
+            for line in lines:
+                line = line.replace('<PARAMS>', '"' + ','.join(params) + '"')
+                line = line.replace('<VALUES>', '"' + ','.join(param_values) + '"')
+                line = line.replace('<METHOD>', method)
+                line = line.replace('<COI>', str(args.coi))
+           
