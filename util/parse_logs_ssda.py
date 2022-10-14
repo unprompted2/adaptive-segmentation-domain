@@ -27,4 +27,14 @@ def _get_filename(method, frac, src, tar):
     return method + '-' + str(frac) + '-' + src + '2' + tar + '.logs'
 
 
-def _parse_file_con
+def _parse_file_contents(contents):
+    lines = contents.split('\n')
+    mIoU = -1
+    total_runtime = 0
+    for line in lines:
+        if "Elapsed " in line:
+            s = line.split(': ')[1].split(', ')
+            h = int(s[0].replace(' hours', ''))
+            m = int(s[1].replace(' minutes', ''))
+            s = float(s[2].replace(' seconds', ''))
+            total_r
