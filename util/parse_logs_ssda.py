@@ -37,4 +37,14 @@ def _parse_file_contents(contents):
             h = int(s[0].replace(' hours', ''))
             m = int(s[1].replace(' minutes', ''))
             s = float(s[2].replace(' seconds', ''))
-            total_r
+            total_runtime += h*3600 + m*60 + s
+        if 'mIoU: ' in line:
+            mIoU = float(line.split('mIoU: ')[1])
+            break
+    return mIoU, total_runtime
+
+
+log_dir = '/home/jorisro/research/domain-adaptive-segmentation/train/semi-supervised-da/logs'
+
+domains = ['EPFL', 'evhela', 'Kasthuri', 'MitoEM-H', 'VNC']
+methods = ['no-da', 'mmd', 'dat',
