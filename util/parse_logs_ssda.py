@@ -47,4 +47,12 @@ def _parse_file_contents(contents):
 log_dir = '/home/jorisro/research/domain-adaptive-segmentation/train/semi-supervised-da/logs'
 
 domains = ['EPFL', 'evhela', 'Kasthuri', 'MitoEM-H', 'VNC']
-methods = ['no-da', 'mmd', 'dat',
+methods = ['no-da', 'mmd', 'dat', 'ynet', 'unet-ts']
+methods_nice = {'no-da': 'No-DA', 'mmd': 'MMD', 'dat': 'DAT', 'ynet': 'Y-Net', 'unet-ts': 'UNet-TS'}
+domains_train = {'EPFL': 272*0.4, 'evhela': 360*0.48, 'Kasthuri': 424*0.426, 'MitoEM-H': 16777*0.48, 'VNC': 21*0.3}
+als = [0.05, 0.10, 0.20, 0.50, 1.00]
+
+hmaps = {}
+tmaps = {}
+mean_to = np.zeros((len(methods), len(domains)))
+mean_from = np.zeros((len(methods), len(dom
