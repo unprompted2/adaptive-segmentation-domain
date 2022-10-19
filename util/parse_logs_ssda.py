@@ -55,4 +55,15 @@ als = [0.05, 0.10, 0.20, 0.50, 1.00]
 hmaps = {}
 tmaps = {}
 mean_to = np.zeros((len(methods), len(domains)))
-mean_from = np.zeros((len(methods), len(dom
+mean_from = np.zeros((len(methods), len(domains)))
+tmean_to = np.zeros((len(methods), len(domains)))
+tmean_from = np.zeros((len(methods), len(domains)))
+vmin = 1
+vmax = 0
+al = 1.00
+for k, method in enumerate(methods):
+    hmap = np.zeros((len(domains), len(domains)))
+    tmap = np.zeros((len(domains), len(domains)))
+    for i, src in enumerate(domains):
+        for j, tar in enumerate(domains):
+     
