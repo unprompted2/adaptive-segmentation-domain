@@ -66,4 +66,12 @@ for k, method in enumerate(methods):
     tmap = np.zeros((len(domains), len(domains)))
     for i, src in enumerate(domains):
         for j, tar in enumerate(domains):
-     
+            if src != tar:
+                filename = os.path.join(log_dir, _get_filename(method, al, src, tar))
+                with open(filename) as f:
+                    contents = f.read()
+                    mIoU, total_runtime = _parse_file_contents(contents)
+                    hmap[i, j] = mIoU
+                    tmap[i, j] = total_runtime
+            else:
+               
