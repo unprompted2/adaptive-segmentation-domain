@@ -74,4 +74,13 @@ for k, method in enumerate(methods):
                     hmap[i, j] = mIoU
                     tmap[i, j] = total_runtime
             else:
-               
+                hmap[i, j] = 0.5
+    hmaps[method] = hmap
+    tmaps[method] = tmap
+    mean_to[k] = hmap.mean(axis=0)
+    mean_from[k] = hmap.mean(axis=1)
+    tmean_to[k] = tmap.mean(axis=0)
+    tmean_from[k] = tmap.mean(axis=1)
+    if method != 'no-da':
+        vmin = min(vmin, np.min(hmap - hmaps['no-da']))
+        vmax = max(vmax,
