@@ -99,4 +99,12 @@ for k, m in enumerate(methods):
     plt.savefig('semi-supervised-da-%s-%.2f.pdf' % (m, al), format='pdf')
     plt.show()
 
-    print('Method: %s' % methods_nice[
+    print('Method: %s' % methods_nice[m])
+    print('    Average mIoU: %.2f' % (hmaps[m].mean()*100))
+    print('    Degree of symmetry: %.2f' % _symmetry(hmaps[m]))
+    print('    Average runtime: %.2f hours' % (tmaps[m].mean() / 3600))
+
+plt.figure(figsize=(15, 15), dpi=DPI)
+for j, domain in enumerate(domains):
+    plt.subplot(3, 3, j+1)
+    barlist = plt.bar(np.arange(len(methods)), mean_from
