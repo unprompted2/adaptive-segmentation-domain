@@ -91,4 +91,12 @@ for k, m in enumerate(methods):
         sns.heatmap(hmaps[m]*100, xticklabels=domains, yticklabels=domains, cmap='plasma', annot=True)
         plt.title(methods_nice[m] + ' performance', fontsize=22)
     else:
-        sns.heatmap((hmaps[m] - hmaps['no-da'])*
+        sns.heatmap((hmaps[m] - hmaps['no-da'])*100, xticklabels=domains, yticklabels=domains, vmin=vmin*100,
+                    vmax=vmax*100, cmap='PuOr', center=0, annot=True)
+
+
+        plt.title(methods_nice[m] + r' $\Delta$' +  ' performance compared to No-DA', fontsize=22)
+    plt.savefig('semi-supervised-da-%s-%.2f.pdf' % (m, al), format='pdf')
+    plt.show()
+
+    print('Method: %s' % methods_nice[
