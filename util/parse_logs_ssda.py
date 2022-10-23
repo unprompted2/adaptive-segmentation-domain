@@ -83,4 +83,12 @@ for k, method in enumerate(methods):
     tmean_from[k] = tmap.mean(axis=1)
     if method != 'no-da':
         vmin = min(vmin, np.min(hmap - hmaps['no-da']))
-        vmax = max(vmax,
+        vmax = max(vmax, np.max(hmap - hmaps['no-da']))
+
+for k, m in enumerate(methods):
+    plt.figure(figsize=(12, 10), dpi=DPI)
+    if m == 'no-da':
+        sns.heatmap(hmaps[m]*100, xticklabels=domains, yticklabels=domains, cmap='plasma', annot=True)
+        plt.title(methods_nice[m] + ' performance', fontsize=22)
+    else:
+        sns.heatmap((hmaps[m] - hmaps['no-da'])*
