@@ -117,4 +117,15 @@ for j, domain in enumerate(domains):
     # plt.ylim([0.50, 0.75])
     plt.title(domain)
 plt.savefig('semi-supervised-da-from.pdf', format='pdf')
-p
+plt.show()
+
+plt.figure(figsize=(15, 15), dpi=DPI)
+for j, domain in enumerate(domains):
+    plt.subplot(3, 3, j+1)
+    barlist = plt.bar(np.arange(len(methods)), mean_to[:, j])
+    barlist[0].set_color('tab:blue')
+    barlist[1].set_color('tab:orange')
+    barlist[2].set_color('tab:green')
+    barlist[3].set_color('tab:red')
+    barlist[4].set_color('tab:purple')
+    plt
