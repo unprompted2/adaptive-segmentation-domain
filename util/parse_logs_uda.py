@@ -1,4 +1,5 @@
 
+
 import os
 
 import numpy as np
@@ -38,19 +39,19 @@ def _parse_file_contents(contents):
             m = int(s[1].replace(' minutes', ''))
             s = float(s[2].replace(' seconds', ''))
             total_runtime += h*3600 + m*60 + s
-        if 'mIoU: ' in line:
-            mIoU = float(line.split('mIoU: ')[1])
+        if line.startswith('{'):
+            mIoU = float(line.split(', ')[1].split(': ')[1][:-1])
             break
     return mIoU, total_runtime
 
 
-log_dir = '/home/jorisro/research/domain-adaptive-segmentation/train/semi-supervised-da/logs'
+log_dir = '/home/jorisro/research/domain-adaptive-segmentation/train/unsupervised-da/logs'
 
-domains = ['EPFL', 'evhela', 'Kasthuri', 'MitoEM-H', 'VNC']
+domains = ['EPFL', 'evhela', 'Kasthuri', 'MiRA', 'MitoEM-H', 'MitoEM-R', 'po936q', 'UroCell', 'VNC']
 methods = ['no-da', 'mmd', 'dat', 'ynet', 'unet-ts']
 methods_nice = {'no-da': 'No-DA', 'mmd': 'MMD', 'dat': 'DAT', 'ynet': 'Y-Net', 'unet-ts': 'UNet-TS'}
-domains_train = {'EPFL': 272*0.4, 'evhela': 360*0.48, 'Kasthuri': 424*0.426, 'MitoEM-H': 16777*0.48, 'VNC': 21*0.3}
-als = [0.05, 0.10, 0.20, 0.50, 1.00]
+domains_train = {'EPFL': 272*0.4, 'evhela': 360*0.48, 'Kasthuri': 424*0.426, 'MiRA': 2250*0.48, 'MitoEM-H': 16777*0.48,
+                 'MitoEM-R': 16777*0.48, 'po936q': 185*0.48, 'UroCell': 85*0.48, 'VNC': 21*0.3}
 
 hmaps = {}
 tmaps = {}
@@ -60,14 +61,13 @@ tmean_to = np.zeros((len(methods), len(domains)))
 tmean_from = np.zeros((len(methods), len(domains)))
 vmin = 1
 vmax = 0
-al = 1.00
 for k, method in enumerate(methods):
     hmap = np.zeros((len(domains), len(domains)))
     tmap = np.zeros((len(domains), len(domains)))
     for i, src in enumerate(domains):
         for j, tar in enumerate(domains):
             if src != tar:
-                filename = os.path.join(log_dir, _get_filename(method, al, src, tar))
+                filename = os.path.join(log_dir, _get_filename(method, 0.0, src, tar))
                 with open(filename) as f:
                     contents = f.read()
                     mIoU, total_runtime = _parse_file_contents(contents)
@@ -96,13 +96,19 @@ for k, m in enumerate(methods):
 
 
         plt.title(methods_nice[m] + r' $\Delta$' +  ' performance compared to No-DA', fontsize=22)
-    plt.savefig('semi-supervised-da-%s-%.2f.pdf' % (m, al), format='pdf')
+    plt.savefig('unsupervised-da-%s.pdf' % (m), format='pdf')
     plt.show()
 
     print('Method: %s' % methods_nice[m])
     print('    Average mIoU: %.2f' % (hmaps[m].mean()*100))
     print('    Degree of symmetry: %.2f' % _symmetry(hmaps[m]))
     print('    Average runtime: %.2f hours' % (tmaps[m].mean() / 3600))
+
+print()
+print('Average from/to mIoU: ')
+tm = np.sum((mean_from + mean_to) / 2, axis=0) / len(methods)
+for i, src in enumerate(domains):
+    print('    %s: %.2f' % (src, tm[i]*100))
 
 plt.figure(figsize=(15, 15), dpi=DPI)
 for j, domain in enumerate(domains):
@@ -114,9 +120,9 @@ for j, domain in enumerate(domains):
     barlist[3].set_color('tab:red')
     barlist[4].set_color('tab:purple')
     plt.xticks(np.arange(len(methods)), methods, fontsize=12)
-    # plt.ylim([0.50, 0.75])
+    plt.ylim([0.45, 0.62])
     plt.title(domain)
-plt.savefig('semi-supervised-da-from.pdf', format='pdf')
+plt.savefig('unsupervised-da-from.pdf', format='pdf')
 plt.show()
 
 plt.figure(figsize=(15, 15), dpi=DPI)
@@ -129,7 +135,19 @@ for j, domain in enumerate(domains):
     barlist[3].set_color('tab:red')
     barlist[4].set_color('tab:purple')
     plt.xticks(np.arange(len(methods)), methods, fontsize=12)
-    # plt.ylim([0.50, 0.75])
+    plt.ylim([0.45, 0.62])
     plt.title(domain)
-plt.savefig('semi-supervised-da-to.pdf', format='pdf')
+plt.savefig('unsupervised-da-to.pdf', format='pdf')
 plt.show()
+
+plt.rcParams.update({'font.size': 22})
+plt.figure(figsize=(15, 15), dpi=DPI)
+for j, method in enumerate(methods):
+    plt.scatter(domains_train.values(), mean_to[j, :])
+    plt.xscale('log')
+plt.xlabel('Size source training set (megavoxels)')
+plt.ylabel('Average mIoU (unsupervised DA)')
+plt.legend([methods_nice[method] for method in methods])
+plt.savefig('unsupervised-da-to-labels.pdf', format='pdf')
+plt.show()
+plt.rcParams.update({'font.size': 16})
