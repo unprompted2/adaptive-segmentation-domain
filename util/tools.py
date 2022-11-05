@@ -9,4 +9,11 @@ from neuralnets.util.augmentation import *
 
 def get_transforms(tfs, coi=None):
     """
-    Build
+    Builds a transform object based on a list of desired augmentations
+
+    :param tfs: list of augmentations, options: rot90, flipx, flipy, contrast, deformation, noise
+    :param coi: classes of interest (only required if deformations are included)
+    :return: transform object that implements the desired augmentations
+    """
+
+    # dictionary that maps augmen
