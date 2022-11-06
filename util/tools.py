@@ -26,4 +26,17 @@ def get_transforms(tfs, coi=None):
 
     # build the transforms
     tf_list = []
-    for k
+    for key in mapper:
+        if key in tfs:
+            tf_list.append(mapper[key])
+
+    # required post-processing
+    if 'deformation' in tfs:
+        tf_list.append(CleanDeformedLabels(coi))
+
+    return Compose(tf_list)
+
+
+def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised=False):
+
+    input_shape = (1, *(params['in
