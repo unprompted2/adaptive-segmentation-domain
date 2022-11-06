@@ -16,4 +16,14 @@ def get_transforms(tfs, coi=None):
     :return: transform object that implements the desired augmentations
     """
 
-    # dictionary that maps augmen
+    # dictionary that maps augmentation strings to transform objects
+    mapper = {'rot90': Rotate90(),
+              'flipx': Flip(prob=0.5, dim=0),
+              'flipy': Flip(prob=0.5, dim=1),
+              'contrast': ContrastAdjust(adj=0.1),
+              'deformation': RandomDeformation(),
+              'noise': AddNoise(sigma_max=0.05)}
+
+    # build the transforms
+    tf_list = []
+    for k
