@@ -39,4 +39,13 @@ def get_transforms(tfs, coi=None):
 
 def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised=False):
 
-    input_shape = (1, *(params['in
+    input_shape = (1, *(params['input_size']))
+    transform = get_transforms(params['augmentation'], coi=params['coi'])
+    print_frm('Applying data augmentation! Specifically %s' % str(params['augmentation']))
+
+    if domain is None:
+
+        split_src = params['src']['train_val_test_split']
+        split_tar = params['tar']['train_val_test_split']
+        print_frm('Train data... ')
+     
