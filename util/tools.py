@@ -48,4 +48,7 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
         split_src = params['src']['train_val_test_split']
         split_tar = params['tar']['train_val_test_split']
         print_frm('Train data... ')
-     
+        train = LabeledVolumeDataset((params['src']['data'], params['tar']['data']),
+                                     (params['src']['labels'], params['tar']['labels']), len_epoch=params['len_epoch'],
+                                     input_shape=input_shape, in_channels=params['in_channels'],
+                                     type=params['type'], 
