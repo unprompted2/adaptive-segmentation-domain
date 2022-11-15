@@ -54,4 +54,8 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
                                      type=params['type'], batch_size=params['train_batch_size'], transform=transform,
                                      range_split=((0, split_src[0]), (0, split_tar[0])), coi=params['coi'],
                                      range_dir=(params['src']['split_orientation'], params['tar']['split_orientation']),
-                                     partial_labels=(1, params['tar_labels_av
+                                     partial_labels=(1, params['tar_labels_available']), seed=params['seed'])
+        print_frm('Validation data...')
+        val = LabeledVolumeDataset((params['src']['data'], params['tar']['data']),
+                                   (params['src']['labels'], params['tar']['labels']), len_epoch=params['len_epoch'],
+                                   input_shape=input_shape, in_channels=para
