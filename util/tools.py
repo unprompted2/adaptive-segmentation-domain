@@ -61,4 +61,8 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
                                    input_shape=input_shape, in_channels=params['in_channels'], type=params['type'],
                                    batch_size=params['test_batch_size'], coi=params['coi'],
                                    range_split=((split_src[0], split_src[1]), (split_tar[0], split_tar[1])),
-                                   range_dir=(params['src']['split_orientation'], pa
+                                   range_dir=(params['src']['split_orientation'], params['tar']['split_orientation']),
+                                   partial_labels=(1, params['tar_labels_available']), seed=params['seed'])
+        print_frm('Test data...')
+        test = LabeledSlidingWindowDataset(params['tar']['data'], params['tar']['labels'],
+                                           in_channels=params['in_channels'], type=params['
