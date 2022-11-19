@@ -70,4 +70,7 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
                                            range_dir=params['tar']['split_orientation'], coi=params['coi'])
 
         print_frm('Train volume shape: %s (source) - %s (target)' % (str(train.data[0].shape), str(train.data[1].shape)))
-        print_frm('Avai
+        print_frm('Available target labels for training: %.1f (i.e. %.2f MV)' % (params['tar_labels_available']*100,
+                                            np.prod(train.data[1].shape)*params['tar_labels_available'] / 1000 / 1000))
+        print_frm('Validation volume shape: %s (source) - %s (target)' % (str(val.data[0].shape), str(val.data[1].shape)))
+        print_frm('Test volume shape: %s (target)'
