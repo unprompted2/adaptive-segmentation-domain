@@ -73,4 +73,11 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
         print_frm('Available target labels for training: %.1f (i.e. %.2f MV)' % (params['tar_labels_available']*100,
                                             np.prod(train.data[1].shape)*params['tar_labels_available'] / 1000 / 1000))
         print_frm('Validation volume shape: %s (source) - %s (target)' % (str(val.data[0].shape), str(val.data[1].shape)))
-        print_frm('Test volume shape: %s (target)'
+        print_frm('Test volume shape: %s (target)' % str(test.data[0].shape))
+
+    else:
+
+        split = params['train_val_test_split'] if supervised else params[domain]['train_val_test_split']
+        data = params['data'] if supervised else params[domain]['data']
+        labels = params['labels'] if supervised else params[domain]['labels']
+        range_dir = params['split_orientati
