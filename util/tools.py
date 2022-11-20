@@ -80,4 +80,8 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
         split = params['train_val_test_split'] if supervised else params[domain]['train_val_test_split']
         data = params['data'] if supervised else params[domain]['data']
         labels = params['labels'] if supervised else params[domain]['labels']
-        range_dir = params['split_orientati
+        range_dir = params['split_orientation'] if supervised else params[domain]['split_orientation']
+        print_frm('Train data...')
+        train = LabeledVolumeDataset(data, labels, len_epoch=params['len_epoch'], input_shape=input_shape,
+                                     in_channels=params['in_channels'], type=params['type'],
+                                     batch_size=params['train_batc
