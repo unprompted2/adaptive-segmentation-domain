@@ -96,4 +96,8 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
         print_frm('Test data...')
         test = LabeledSlidingWindowDataset(data, labels, in_channels=params['in_channels'], type=params['type'],
                                            batch_size=params['test_batch_size'], transform=transform,
-                                           range_split=(split[
+                                           range_split=(split[1], 1), range_dir=range_dir, coi=params['coi'])
+
+        print_frm('Train volume shape: %s' % str(train.data[0].shape))
+        print_frm('Available %s labels for training: %d%% (i.e. %.2f MV)' % (domain, domain_labels_available*100,
+                                                    np.prod(train.data[0].shape)*domain_labels_available / 1
