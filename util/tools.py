@@ -118,4 +118,16 @@ def parse_params(params):
     """
     Parse a YAML parameter dictionary
 
-   
+    :param params: dictionary containing the parameters
+    :return: parsed dictionary
+    """
+
+    params = parse_params_base(params)
+
+    keys = params.keys()
+
+    if 'tar_labels_available' in keys:
+        params['tar_labels_available'] = float(params['tar_labels_available'])
+
+    if 'len_epoch' in keys:
+        params['len_epoch']
