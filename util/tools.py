@@ -100,4 +100,10 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
 
         print_frm('Train volume shape: %s' % str(train.data[0].shape))
         print_frm('Available %s labels for training: %d%% (i.e. %.2f MV)' % (domain, domain_labels_available*100,
-                                                    np.prod(train.data[0].shape)*domain_labels_available / 1
+                                                    np.prod(train.data[0].shape)*domain_labels_available / 1000 / 1000))
+        print_frm('Validation volume shape: %s' % str(val.data[0].shape))
+        print_frm('Test volume shape: %s' % str(test.data[0].shape))
+
+    train_loader = DataLoader(train, batch_size=params['train_batch_size'], num_workers=params['num_workers'],
+                              pin_memory=True)
+    val_loader = DataLoader(val, batch_size=params['test_batch_size'], num_workers=p
