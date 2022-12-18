@@ -106,4 +106,16 @@ def get_dataloaders(params, domain=None, domain_labels_available=1.0, supervised
 
     train_loader = DataLoader(train, batch_size=params['train_batch_size'], num_workers=params['num_workers'],
                               pin_memory=True)
-    val_loader = DataLoader(val, batch_size=params['test_batch_size'], num_workers=p
+    val_loader = DataLoader(val, batch_size=params['test_batch_size'], num_workers=params['num_workers'],
+                            pin_memory=True)
+    test_loader = DataLoader(test, batch_size=params['test_batch_size'], num_workers=params['num_workers'],
+                             pin_memory=True)
+
+    return train_loader, val_loader, test_loader
+
+
+def parse_params(params):
+    """
+    Parse a YAML parameter dictionary
+
+   
