@@ -130,4 +130,16 @@ def parse_params(params):
         params['tar_labels_available'] = float(params['tar_labels_available'])
 
     if 'len_epoch' in keys:
-        params['len_epoch']
+        params['len_epoch'] = int(params['len_epoch'])
+    else:
+        params['len_epoch'] = 2000
+
+    if 'augmentation' in keys:
+        params['augmentation'] = params['augmentation'].split(',')
+    else:
+        params['augmentation'] = 'rot90,flipx,flipy,contrast,noise'.split(',')
+
+    for dom in ['src', 'tar']:
+        if dom in keys:
+            ks = params[dom].keys()
+      
