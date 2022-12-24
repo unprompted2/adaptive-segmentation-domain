@@ -161,4 +161,11 @@ def _correct_type(param, values):
             v_ = int(v)
         elif param == 'skip_connections' or param == 'residual_connections':
             v_ = bool(int(v))
-        el
+        elif param == 'dropout' or param == 'lr' or param == 'lambda_mmd' or param == 'lambda_dat' or \
+                param == 'lambda_rec' or param == 'lambda_o' or param == 'lambda_w':
+            v_ = float(v)
+        elif param == 'input_shape':
+            v_ = [int(item) for item in v.split(',')]
+        else:
+            v_ = v
+        val
