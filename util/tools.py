@@ -147,4 +147,18 @@ def parse_params(params):
                     if isinstance(params[dom][split_key], float):
                         params[dom][split_key] = [params[dom][split_key]]
                     else:
-                        params[dom][split_key] = [float(item) for item in params
+                        params[dom][split_key] = [float(item) for item in params[dom][split_key].split(',')]
+
+    return params
+
+
+def _correct_type(param, values):
+
+    vs = values.split(';')
+    values = []
+    for v in vs:
+        if param == 'feature_maps' or param == 'levels' or param == 'epochs':
+            v_ = int(v)
+        elif param == 'skip_connections' or param == 'residual_connections':
+            v_ = bool(int(v))
+        el
