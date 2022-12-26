@@ -168,4 +168,23 @@ def _correct_type(param, values):
             v_ = [int(item) for item in v.split(',')]
         else:
             v_ = v
-        val
+        values.append(v_)
+
+    return param, values
+
+
+def parse_search_grid(sg_str):
+
+    sg = sg_str.split('#')
+    search_grid = {}
+    for s in sg:
+        param, values = s.split(':')
+        param, values = _correct_type(param, values)
+        search_grid[param] = values
+
+    return search_grid
+
+
+def process_seconds(s):
+    """
+    Processes an amount of seconds to (hou
