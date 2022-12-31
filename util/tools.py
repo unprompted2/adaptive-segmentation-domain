@@ -203,4 +203,14 @@ def process_seconds(s):
 
 def rmdir(dir):
     print_frm('    Removing %s' % dir)
-    shutil.rmtree(dir, ignore_error
+    shutil.rmtree(dir, ignore_errors=True)
+
+
+def cp(source, target):
+    print_frm('    Copying %s -> %s' % (source, target))
+    shutil.copyfile(source, target)
+
+
+def mv(source, target):
+    print_frm('    Moving %s -> %s' % (source, target))
+    shutil.move(source, target)
