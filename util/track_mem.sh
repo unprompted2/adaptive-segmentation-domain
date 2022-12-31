@@ -23,4 +23,5 @@ do
     fi
 done
 
-echo "Maximum (resil
+echo "Maximum (resilient) memory usage:$max_mem GB"
+echo "Maximum GPU memory usage:$max_mem_gpu MB"
