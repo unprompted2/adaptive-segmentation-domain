@@ -14,4 +14,8 @@ pip install -r requirements.txt
 ## Usage
 
 ### Illustrative examples
-You can run an unsupervised dom
+You can run an unsupervised domain adaptive demo by running the following command:
+```
+python train/train_unsupervised.py -c train/train_unsupervised.yaml
+```
+The provided YAML file is a configuration file that contains all necessary parameters. Note that you may have to adjust the data paths, depending on where you downloaded the data. By default, this will train
