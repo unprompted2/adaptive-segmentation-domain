@@ -29,4 +29,4 @@ By default, this will do the same thing as the previous demo, but additionally e
 Feel free to adjust the parameter settings in the configuration files and examine the effect on the outcome!
 
 ### Domain adaptive training on your own data
-To train a model in a domain adaptive fashion, you will need a (preferably large) labeled source datasets, e.g. one of the datasets provided in our repository. You will also nee
+To train a model in a domain adaptive fashion, you will need a (preferably large) labeled source datasets, e.g. one of the datasets provided in our repository. You will also need a target dataset that is at least partially labeled. These labels will be used for testing and evaluating performance. In the case of unsupervised domain adaptation, you are good to go. However, if the gap between the source and target is still relatively large, you are recommended to label a small part of the target data and use this for training (i.e. sem
