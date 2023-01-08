@@ -18,4 +18,10 @@ You can run an unsupervised domain adaptive demo by running the following comman
 ```
 python train/train_unsupervised.py -c train/train_unsupervised.yaml
 ```
-The provided YAML file is a configuration file that contains all necessary parameters. Note that you may have to adjust the data paths, depending on where you downloaded the data. By default, this will train
+The provided YAML file is a configuration file that contains all necessary parameters. Note that you may have to adjust the data paths, depending on where you downloaded the data. By default, this will train a Y-Net with the EPFL and VNC data as source and target, respectively.
+
+Similarly, you can run a semi-supervised domain adaptive demo by running the following command:
+```
+python train/train_semi_supervised.py -c train/train_semi_supervised.yaml
+```
+By default, this will do the same thing as the previous demo, but additionally employ 
