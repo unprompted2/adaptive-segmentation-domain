@@ -29,4 +29,8 @@ By default, this will do the same thing as the previous demo, but additionally e
 Feel free to adjust the parameter settings in the configuration files and examine the effect on the outcome!
 
 ### Domain adaptive training on your own data
-To train a model in a domain adaptive fashion, you will need a (preferably large) labeled source datasets, e.g. one of the datasets provided in our repository. You will also need a target dataset that is at least partially labeled. These labels will be used for testing and evaluating performance. In the case of unsupervised domain adaptation, you are good to go. However, if the gap between the source and target is still relatively large, you are recommended to label a small part of the target data and use this for training (i.e. sem
+To train a model in a domain adaptive fashion, you will need a (preferably large) labeled source datasets, e.g. one of the datasets provided in our repository. You will also need a target dataset that is at least partially labeled. These labels will be used for testing and evaluating performance. In the case of unsupervised domain adaptation, you are good to go. However, if the gap between the source and target is still relatively large, you are recommended to label a small part of the target data and use this for training (i.e. semi-supervised DA).
+
+To start training on your own data, you will first have to convert the format of your input data and labels. We currently support 3D volumes as PNG, JPG or TIF sequences, or multipage TIF data. To convert your data in given formats, consider using tools such as [Bio-Formats](https://www.openmicroscopy.org/bio-formats/).
+
+Next, you will ha
