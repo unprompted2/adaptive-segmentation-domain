@@ -24,4 +24,9 @@ Similarly, you can run a semi-supervised domain adaptive demo by running the fol
 ```
 python train/train_semi_supervised.py -c train/train_semi_supervised.yaml
 ```
-By default, this will do the same thing as the previous demo, but additionally employ 
+By default, this will do the same thing as the previous demo, but additionally employ labeled target data.
+
+Feel free to adjust the parameter settings in the configuration files and examine the effect on the outcome!
+
+### Domain adaptive training on your own data
+To train a model in a domain adaptive fashion, you will need a (preferably large) labeled source datasets, e.g. one of the datasets provided in our repository. You will also nee
