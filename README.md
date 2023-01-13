@@ -33,4 +33,8 @@ To train a model in a domain adaptive fashion, you will need a (preferably large
 
 To start training on your own data, you will first have to convert the format of your input data and labels. We currently support 3D volumes as PNG, JPG or TIF sequences, or multipage TIF data. To convert your data in given formats, consider using tools such as [Bio-Formats](https://www.openmicroscopy.org/bio-formats/).
 
-Next, you will ha
+Next, you will have to adjust the data settings in the configuration file. Make sure to correctly specify the training, validation, and testing data splits of both the source and target.
+
+You should now be able to train on your own data, either unsupervised (with `train/train_unsupervised.py`) or semi-supervised (with `train/train_semi_supervised.py`).
+
+### Parameter optimiz
