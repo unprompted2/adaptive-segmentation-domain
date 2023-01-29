@@ -42,4 +42,6 @@ As like any other algorithms, parameter optimization plays a crucial role in dom
 ```
 python cross_validation/cross_validate.py -c cross_validate/cross_validate.yaml
 ```
-This will perform 3-fold grid searc
+This will perform 3-fold grid search cross validation w.r.t. the reconstruction regularization parameter of Y-Net for unsupervised domain adaptive training with the EPFL and VNC data as source and target, respectively. These settings can be adjusted in the configuration file. Note that this process can be computationally intensive, especially when the number of parameters in the grid or the amount of folds increases.
+
+### S
