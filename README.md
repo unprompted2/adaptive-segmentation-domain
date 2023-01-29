@@ -37,4 +37,9 @@ Next, you will have to adjust the data settings in the configuration file. Make 
 
 You should now be able to train on your own data, either unsupervised (with `train/train_unsupervised.py`) or semi-supervised (with `train/train_semi_supervised.py`).
 
-### Parameter optimiz
+### Parameter optimization
+As like any other algorithms, parameter optimization plays a crucial role in domain adaptive segmentation. By running the following command, you can perform a grid search cross validation for a specific use-case:
+```
+python cross_validation/cross_validate.py -c cross_validate/cross_validate.yaml
+```
+This will perform 3-fold grid searc
