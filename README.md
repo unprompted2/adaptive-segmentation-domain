@@ -44,4 +44,9 @@ python cross_validation/cross_validate.py -c cross_validate/cross_validate.yaml
 ```
 This will perform 3-fold grid search cross validation w.r.t. the reconstruction regularization parameter of Y-Net for unsupervised domain adaptive training with the EPFL and VNC data as source and target, respectively. These settings can be adjusted in the configuration file. Note that this process can be computationally intensive, especially when the number of parameters in the grid or the amount of folds increases.
 
-### S
+### Segmenting new datasets with pretrained models
+Applying pretrained models on new datasets is straightforward. Make sure the new data is in the right format (see two sections before). You can segment the data by running the following command.
+```
+python test/segment.py -c test/segment.yaml
+```
+Ensure the configuration file spe
