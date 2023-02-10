@@ -49,4 +49,10 @@ Applying pretrained models on new datasets is straightforward. Make sure the new
 ```
 python test/segment.py -c test/segment.yaml
 ```
-Ensure the configuration file spe
+Ensure the configuration file specifies the correct data paths.
+
+## FAQ
+**Q: Is a CUDA capable device required?**
+**A:** Technically, no. However, training on the CPU is very slow, so using a GPU is highly recommended. If you do not have a GPU at your disposal, consider using [Google Colab](https://colab.research.google.com/).
+
+**Q: Is training with multiple source domain
