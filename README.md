@@ -55,4 +55,8 @@ Ensure the configuration file specifies the correct data paths.
 **Q: Is a CUDA capable device required?**
 **A:** Technically, no. However, training on the CPU is very slow, so using a GPU is highly recommended. If you do not have a GPU at your disposal, consider using [Google Colab](https://colab.research.google.com/).
 
-**Q: Is training with multiple source domain
+**Q: Is training with multiple source domains possible?**
+**A:** This is called multi-domain adaptation and currently not supported.
+
+**Q: Can I train with multiple GPUs?**
+**A:** Yes. Our implementation leverages [PyTorch Lightning](https://www.pytorchlightning.ai/) which makes this relatively straightforward. You can specify your preferred compute GPUs and parallelizatio
