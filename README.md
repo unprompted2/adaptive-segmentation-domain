@@ -59,4 +59,7 @@ Ensure the configuration file specifies the correct data paths.
 **A:** This is called multi-domain adaptation and currently not supported.
 
 **Q: Can I train with multiple GPUs?**
-**A:** Yes. Our implementation leverages [PyTorch Lightning](https://www.pytorchlightning.ai/) which makes this relatively straightforward. You can specify your preferred compute GPUs and parallelization accelerator in the configuration file. Training on multiple nodes in cluster environments should also be possible with minor adjustments. For more details, we refer to the [PyTorch Lightning documentation](https://pytorch-lightning.readthedocs.io/en/latest/) (e.g. [multi-GPU training](https://pytorch-lightning.readthedocs.io/en/latest/ad
+**A:** Yes. Our implementation leverages [PyTorch Lightning](https://www.pytorchlightning.ai/) which makes this relatively straightforward. You can specify your preferred compute GPUs and parallelization accelerator in the configuration file. Training on multiple nodes in cluster environments should also be possible with minor adjustments. For more details, we refer to the [PyTorch Lightning documentation](https://pytorch-lightning.readthedocs.io/en/latest/) (e.g. [multi-GPU training](https://pytorch-lightning.readthedocs.io/en/latest/advanced/multi_gpu.html) & [cluster computing](https://pytorch-lightning.readthedocs.io/en/latest/clouds/slurm.html)).
+
+## Acknowledgements
+Unprompted2 extends gratitude to the contributors of the [DAT](https://github.com/fungtion/DANN) and [MMD](https://github.com/OctoberChang/MMD-GAN) repositories that were used in this work.
